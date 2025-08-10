@@ -5,7 +5,8 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-  background: url('/img/jonasz.jpg') center center / cover no-repeat fixed;
+  /* Background image is applied inline in template to avoid asset path issues on GitHub Pages */
+  background-color: var(--primary-black);
 }
 
 .hero::before {

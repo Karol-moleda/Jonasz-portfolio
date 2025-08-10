@@ -27,14 +27,15 @@ export class TranslationService {
 
   private loadTranslations(lang: Language): void {
     // Ładuj tłumaczenia z plików JSON w assets; fallback na en -> pl
-  this.http.get(`/i18n/${lang}.json`)
+  // Use relative path (no leading slash) to respect <base href> on GitHub Pages
+  this.http.get(`i18n/${lang}.json`)
       .pipe(
         catchError(() => {
           console.warn(`Failed to load translations for ${lang}, falling back to en`);
-      return this.http.get(`/i18n/en.json`).pipe(
+  return this.http.get(`i18n/en.json`).pipe(
             catchError(() => {
               console.warn(`Failed to load translations for en, falling back to pl`);
-        return this.http.get(`/i18n/pl.json`).pipe(
+  return this.http.get(`i18n/pl.json`).pipe(
                 catchError(() => {
                   console.error('Failed to load all translation files');
                   return of({});
