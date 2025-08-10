@@ -67,7 +67,7 @@
               </a>
               
               <div class="concert-images" *ngIf="concert.images && concert.images.length > 0">
-                <h4>Zdjęcia z koncertu</h4>
+                <h4>{{ getTranslation('gallery.concerts') }}</h4>
                 <div class="images-grid">
                   <div class="image-thumbnail" *ngFor="let image of concert.images">
                     <div class="image-placeholder">
@@ -86,12 +86,8 @@
           <div class="no-concerts-content">
             <i class="fas fa-music"></i>
             <h3>{{ getTranslation('concerts.noConcerts') }}</h3>
-            <p *ngIf="activeTab() === 'upcoming'">
-              Sprawdź ponownie wkrótce, aby zobaczyć nadchodzące koncerty.
-            </p>
-            <p *ngIf="activeTab() === 'archive'">
-              Archiwum koncertów będzie dostępne wkrótce.
-            </p>
+            <p *ngIf="activeTab() === 'upcoming'">{{ getTranslation('concerts.noConcerts') }}</p>
+            <p *ngIf="activeTab() === 'archive'">{{ getTranslation('concerts.archive') }}</p>
           </div>
         </div>
       </ng-template>

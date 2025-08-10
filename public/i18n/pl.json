@@ -81,7 +81,10 @@
   },
   "language": {
     "pl": "Polski",
-  "en": "English",
-  "it": "Włoski"
+    "en": "English",
+    "it": "Włoski"
+  },
+  "menu": {
+    "close": "Zamknij"
   }
-} 
+}

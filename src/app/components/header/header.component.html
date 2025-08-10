@@ -1,17 +1,42 @@
 <header class="header">
   <div class="container">
-    <div class="logo">
-      <h1>Jonasz Jochymczyk</h1>
-      <span class="subtitle">Pianista • Kompozytor • Artysta</span>
-    </div>
-    
-    <nav class="nav">
-      <ul class="nav-list">
-        <li><a href="/">Strona główna</a></li>
-        <li><a href="/biography">Biografia</a></li>
-        <li><a href="/concerts">Koncerty</a></li>
-        <li><a href="/contact">Kontakt</a></li>
-      </ul>
-    </nav>
+  <!-- Logo usunięte - zostaje tylko hamburger -->
+
+  <nav class="nav" [class.active]="isMenuOpen()"></nav>
+
+    <button class="mobile-menu-btn" (click)="toggleMenu()" [class.open]="isMenuOpen()" aria-label="Toggle menu" [attr.aria-expanded]="isMenuOpen()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
+
+  <aside class="side-panel" [class.open]="isMenuOpen()" (click)="$event.stopPropagation()" role="dialog" aria-modal="true">
+    <div class="menu-content">
+      <button class="close-btn" (click)="closeMenu()" [attr.aria-label]="translationService.get('menu.close')">
+        <span class="icon">×</span>
+        <span class="label">{{ translationService.get('menu.close') }}</span>
+      </button>
+      
+      <ul class="nav-list">
+        <li *ngFor="let item of getNavigationItems()">
+          <a [routerLink]="item.path" class="nav-link" [class.active]="isActiveRoute(item.path)" (click)="closeMenu()">{{ item.label }}</a>
+        </li>
+      </ul>
+      
+      <div class="language-switcher">
+        <button class="lang-btn" [class.active]="translationService.getCurrentLanguage() === 'pl'" (click)="switchLanguage('pl')">PL</button>
+        <button class="lang-btn" [class.active]="translationService.getCurrentLanguage() === 'en'" (click)="switchLanguage('en')">EN</button>
+        <button class="lang-btn" [class.active]="translationService.getCurrentLanguage() === 'it'" (click)="switchLanguage('it')">IT</button>
+      </div>
+      
+      <div class="side-footer">
+        <a *ngFor="let s of getSocialLinks()" [href]="s.url" target="_blank" rel="noopener" [attr.aria-label]="s.name">
+          <i [class]="s.icon"></i>
+        </a>
+      </div>
+    </div>
+    <div></div> <!-- Empty right column -->
+  </aside>
+  <div class="side-drawer" [class.open]="isMenuOpen()" (click)="closeMenu()"></div>
 </header>

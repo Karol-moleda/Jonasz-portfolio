@@ -16,17 +16,10 @@
           </button>
         </div>
       </div>
-      <div class="hero-image">
-        <div class="piano-image">
-          <!-- Placeholder for piano/pianist image -->
-          <div class="image-placeholder">
-            <i class="fas fa-music"></i>
-            <span>Jonasz Jochemczyk</span>
-          </div>
-        </div>
-      </div>
+  <div class="hero-image"></div>
     </div>
   </div>
+
 </section>
 
 <!-- Biography Section -->
@@ -50,16 +43,46 @@
   </div>
 </section>
 
+
+
 <!-- Achievements Section -->
 <section class="section achievements-section">
   <div class="container">
-    <h2 class="section-title">{{ getTranslation('home.achievements.title') }}</h2>
-    <div class="grid grid-4">
-      <div class="achievement-card card" *ngFor="let achievement of achievements()">
-        <div class="achievement-icon">
-          <i class="fas fa-trophy"></i>
+    <div class="grid grid-2">
+      <div class="achievements-content">
+        <h2 class="section-title text-gold" style="font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 1px;">Osiągnięcia</h2>
+        <ul class="achievements-list" style="list-style: none; padding: 0;">
+          <li style="margin-bottom: 1rem; font-size: 1.15rem; display: flex; align-items: center;">
+            <i class="fas fa-trophy text-gold" style="margin-right: 0.75rem;"></i>
+            <span>Laureat międzynarodowych konkursów pianistycznych</span>
+          </li>
+          <li style="margin-bottom: 1rem; font-size: 1.15rem; display: flex; align-items: center;">
+            <i class="fas fa-music text-gold" style="margin-right: 0.75rem;"></i>
+            <span>Występy w prestiżowych salach koncertowych</span>
+          </li>
+          <li style="margin-bottom: 1rem; font-size: 1.15rem; display: flex; align-items: center;">
+            <i class="fas fa-record-vinyl text-gold" style="margin-right: 0.75rem;"></i>
+            <span>Nagrania dla wiodących wytwórni muzycznych</span>
+          </li>
+          <li style="margin-bottom: 1rem; font-size: 1.15rem; display: flex; align-items: center;">
+            <i class="fas fa-users text-gold" style="margin-right: 0.75rem;"></i>
+            <span>Współpraca z wybitnymi dyrygentami i orkiestrami</span>
+          </li>
+          <li style="margin-bottom: 1rem; font-size: 1.15rem; display: flex; align-items: center;">
+            <i class="fas fa-globe-europe text-gold" style="margin-right: 0.75rem;"></i>
+            <span>Recitale w Europie, Azji i Ameryce Północnej</span>
+          </li>
+          <li style="margin-bottom: 1rem; font-size: 1.15rem; display: flex; align-items: center;">
+            <i class="fas fa-award text-gold" style="margin-right: 0.75rem;"></i>
+            <span>Stypendia artystyczne i nagrody specjalne</span>
+          </li>
+        </ul>
+      </div>
+      <div class="achievements-image">
+        <div class="image-placeholder">
+          <i class="fas fa-star text-gold" style="font-size: 3rem;"></i>
+          <span style="display:block; margin-top:0.5rem; font-family: 'Montserrat', sans-serif; font-weight: 500;">Sukcesy artystyczne</span>
         </div>
-        <h3 class="achievement-title">{{ achievement }}</h3>
       </div>
     </div>
   </div>

@@ -16,7 +16,7 @@ export class DataService {
       {
         id: '1',
         title: 'Recital Chopinowski',
-        date: '2024-12-15',
+  date: '2025-10-15',
         time: '19:00',
         location: 'Warszawa',
         venue: 'Filharmonia Narodowa',
@@ -28,7 +28,7 @@ export class DataService {
       {
         id: '2',
         title: 'Koncert z Orkiestrą',
-        date: '2024-12-22',
+  date: '2025-11-22',
         time: '20:00',
         location: 'Kraków',
         venue: 'Krakowska Filharmonia',
@@ -40,7 +40,7 @@ export class DataService {
       {
         id: '3',
         title: 'Wieczór Liszta',
-        date: '2025-01-10',
+  date: '2026-01-10',
         time: '18:30',
         location: 'Poznań',
         venue: 'Aula Nova',
@@ -58,7 +58,7 @@ export class DataService {
       {
         id: '4',
         title: 'Recital w Olkuszu',
-        date: '2024-11-20',
+  date: '2024-11-20',
         location: 'Olkusz',
         venue: 'Miejski Ośrodek Kultury',
         program: 'Diverse Piano Works',
@@ -69,7 +69,7 @@ export class DataService {
       {
         id: '5',
         title: 'Koncert w Katowicach',
-        date: '2024-10-15',
+  date: '2024-10-15',
         location: 'Katowice',
         venue: 'NOSPR',
         program: 'Rachmaninoff - Koncerty fortepianowe',

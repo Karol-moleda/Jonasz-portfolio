@@ -31,6 +31,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Lock scroll when menu is open */
+html.no-scroll,
+body.no-scroll {
+  overflow: hidden !important;
+}
+
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;

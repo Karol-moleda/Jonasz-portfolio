@@ -1,0 +1,87 @@
+{
+  "navigation": {
+    "home": "Home",
+    "biography": "Biografia",
+    "concerts": "Concerti",
+    "articles": "Articoli",
+    "gallery": "Galleria",
+    "recordings": "Registrazioni",
+    "contact": "Contatto"
+  },
+  "home": {
+    "title": "Jonasz Jochymczyk",
+    "subtitle": "Pianista • Compositore • Artista",
+    "hero": {
+      "title": "Benvenuti nel mondo della musica",
+      "description": "Scoprite il magico mondo del pianoforte interpretato da Jonasz Jochymczyk - un eccezionale pianista e compositore di Olkusz."
+    },
+    "biography": {
+      "title": "Biografia",
+      "short": "Jonasz Jochymczyk è un eccellente pianista e compositore la cui musica unisce la tradizione classica con la modernità. Le sue interpretazioni incantano il pubblico in tutto il mondo.",
+      "readMore": "Leggi di più"
+    },
+    "achievements": {
+      "title": "Risultati",
+      "items": [
+        "Vincitore di concorsi pianistici internazionali",
+        "Esibizioni in prestigiose sale da concerto",
+        "Registrazioni per etichette musicali di punta",
+        "Collaborazioni con direttori e orchestre di spicco"
+      ]
+    },
+    "upcomingConcerts": {
+      "title": "Prossimi concerti",
+      "viewAll": "Vedi tutto"
+    }
+  },
+  "biography": {
+    "title": "Biografia",
+    "fullText": "Jonasz Jochymczyk è nato a Olkusz, dove ha iniziato il suo percorso musicale. Fin da piccolo ha mostrato straordinarie doti pianistiche, sviluppate sotto la guida di eccellenti insegnanti.\n\nLa sua formazione musicale comprende studi presso le migliori scuole, dove ha perfezionato le sue capacità tecniche e artistiche. Oggi è considerato uno dei pianisti più straordinari della sua generazione.\n\nIl repertorio di Jonasz include sia capolavori classici che composizioni contemporanee. Le sue interpretazioni sono caratterizzate da una profonda comprensione della musica, perfezione tecnica e sensibilità artistica.\n\nCome compositore, Jonasz crea musica che unisce tradizione e modernità, dando vita a uno stile unico che parla al pubblico contemporaneo."
+  },
+  "concerts": {
+    "title": "Concerti",
+    "upcoming": "In arrivo",
+    "archive": "Archivio",
+    "tickets": "Biglietti",
+    "location": "Luogo",
+    "date": "Data",
+    "time": "Ora",
+    "program": "Programma",
+    "noConcerts": "Nessun concerto in arrivo"
+  },
+  "articles": {
+    "title": "Articoli",
+    "readMore": "Leggi di più",
+    "source": "Fonte"
+  },
+  "gallery": {
+    "title": "Galleria",
+    "sessions": "Servizi fotografici",
+    "concerts": "Foto dei concerti",
+    "all": "Tutti"
+  },
+  "recordings": {
+    "title": "Registrazioni",
+    "watchOnYoutube": "Guarda su YouTube"
+  },
+  "contact": {
+    "title": "Contatto",
+    "email": "Email",
+    "phone": "Telefono",
+    "socialMedia": "Social media",
+    "followOn": "Segui su",
+    "sendMessage": "Invia messaggio",
+    "name": "Nome",
+    "message": "Messaggio",
+    "send": "Invia"
+  },
+  "footer": {
+    "copyright": "© 2024 Jonasz Jochymczyk. Tutti i diritti riservati.",
+    "design": "Progetto e sviluppo"
+  },
+  "language": {
+    "pl": "Polski",
+    "en": "English",
+    "it": "Italiano"
+  }
+}
