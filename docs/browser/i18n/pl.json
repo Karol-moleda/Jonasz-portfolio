@@ -1,0 +1,90 @@
+{
+  "navigation": {
+    "home": "Strona główna",
+    "biography": "Biografia",
+    "concerts": "Koncerty",
+    "articles": "Artykuły",
+    "gallery": "Galeria",
+    "recordings": "Nagrania",
+    "contact": "Kontakt"
+  },
+  "home": {
+    "title": "Jonasz Jochemczyk",
+    "subtitle": "Pianista • Kompozytor • Artysta",
+    "hero": {
+      "title": "Witaj w świecie muzyki",
+      "description": "Odkryj magiczny świat fortepianu w wykonaniu Jonasza Jochemczyka - wybitnego pianisty i kompozytora z Olkusza."
+    },
+    "biography": {
+      "title": "Biografia",
+      "short": "Jonasz Jochemczyk to wybitny pianista i kompozytor, którego muzyka łączy klasyczną tradycję z nowoczesnymi eksperymentami. Jego interpretacje zachwycają publiczność na całym świecie.",
+      "readMore": "Czytaj więcej"
+    },
+    "achievements": {
+      "title": "Osiągnięcia",
+      "items": [
+        "Laureat międzynarodowych konkursów pianistycznych",
+        "Występy w prestiżowych salach koncertowych",
+        "Nagrania dla wiodących wytwórni muzycznych",
+        "Współpraca z wybitnymi dyrygentami i orkiestrami"
+      ]
+    },
+    "upcomingConcerts": {
+      "title": "Nadchodzące koncerty",
+      "viewAll": "Zobacz wszystkie"
+    }
+  },
+  "biography": {
+    "title": "Biografia",
+    "fullText": "Jonasz Jochemczyk urodził się w Olkuszu, gdzie rozpoczął swoją muzyczną podróż. Od najmłodszych lat wykazywał niezwykły talent pianistyczny, który rozwijał pod okiem wybitnych pedagogów.\n\nJego edukacja muzyczna obejmowała studia w najlepszych szkołach muzycznych, gdzie doskonalił swoje umiejętności techniczne i artystyczne. Dziś jest uznawany za jednego z najwybitniejszych pianistów swojego pokolenia.\n\nRepertuar Jonasza obejmuje zarówno klasyczne dzieła mistrzów, jak i współczesne kompozycje. Jego interpretacje charakteryzują się głębokim zrozumieniem muzyki, techniczną perfekcją oraz niezwykłą wrażliwością artystyczną.\n\nJako kompozytor, Jonasz tworzy muzykę, która łączy tradycję z nowoczesnością, tworząc unikalny styl, który przemawia do współczesnej publiczności."
+  },
+  "concerts": {
+    "title": "Koncerty",
+    "upcoming": "Nadchodzące",
+    "archive": "Archiwum",
+    "tickets": "Bilety",
+    "location": "Miejsce",
+    "date": "Data",
+    "time": "Godzina",
+    "program": "Program",
+    "noConcerts": "Brak nadchodzących koncertów"
+  },
+  "articles": {
+    "title": "Artykuły",
+    "readMore": "Czytaj więcej",
+    "source": "Źródło"
+  },
+  "gallery": {
+    "title": "Galeria",
+    "sessions": "Sesje zdjęciowe",
+    "concerts": "Zdjęcia z koncertów",
+    "all": "Wszystkie"
+  },
+  "recordings": {
+    "title": "Nagrania",
+    "watchOnYoutube": "Obejrzyj na YouTube"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "email": "Email",
+    "phone": "Telefon",
+    "socialMedia": "Media społecznościowe",
+    "followOn": "Śledź na",
+    "sendMessage": "Wyślij wiadomość",
+    "name": "Imię i nazwisko",
+    "message": "Wiadomość",
+    "send": "Wyślij"
+  },
+  "footer": {
+    "copyright": "© 2024 Jonasz Jochemczyk. Wszystkie prawa zastrzeżone.",
+    "design": "Projekt i realizacja"
+  },
+  "language": {
+    "pl": "Polski",
+    "en": "English",
+    "it": "Włoski"
+  },
+  "menu": {
+    "close": "Zamknij"
+  }
+}
