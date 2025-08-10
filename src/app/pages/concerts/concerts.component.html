@@ -1,0 +1,100 @@
+<section class="concerts-page">
+  <div class="container">
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1 class="page-title">{{ getTranslation('concerts.title') }}</h1>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button 
+        class="tab-btn" 
+        [class.active]="activeTab() === 'upcoming'"
+        (click)="setActiveTab('upcoming')">
+        {{ getTranslation('concerts.upcoming') }}
+      </button>
+      <button 
+        class="tab-btn" 
+        [class.active]="activeTab() === 'archive'"
+        (click)="setActiveTab('archive')">
+        {{ getTranslation('concerts.archive') }}
+      </button>
+    </div>
+
+    <!-- Concerts Grid -->
+    <div class="concerts-container">
+      <div class="concerts-grid" *ngIf="getConcerts().length > 0; else noConcerts">
+        <div class="concert-card" *ngFor="let concert of getConcerts()">
+          <div class="concert-image">
+            <div class="image-placeholder">
+              <i class="fas fa-calendar-alt"></i>
+              <span>{{ concert.title }}</span>
+            </div>
+          </div>
+          
+          <div class="concert-details">
+            <h3 class="concert-title">{{ concert.title }}</h3>
+            
+            <div class="concert-info">
+              <div class="info-item">
+                <i class="fas fa-calendar"></i>
+                <span>{{ formatDate(concert.date) }}</span>
+              </div>
+              
+              <div class="info-item" *ngIf="concert.time">
+                <i class="fas fa-clock"></i>
+                <span>{{ concert.time }}</span>
+              </div>
+              
+              <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>{{ concert.location }}, {{ concert.venue }}</span>
+              </div>
+            </div>
+            
+            <div class="concert-program" *ngIf="concert.program">
+              <h4>{{ getTranslation('concerts.program') }}</h4>
+              <p>{{ concert.program }}</p>
+            </div>
+            
+            <div class="concert-actions">
+              <a 
+                [href]="concert.ticketLink" 
+                target="_blank" 
+                class="btn btn-primary"
+                *ngIf="concert.ticketLink && activeTab() === 'upcoming'">
+                {{ getTranslation('concerts.tickets') }}
+              </a>
+              
+              <div class="concert-images" *ngIf="concert.images && concert.images.length > 0">
+                <h4>Zdjęcia z koncertu</h4>
+                <div class="images-grid">
+                  <div class="image-thumbnail" *ngFor="let image of concert.images">
+                    <div class="image-placeholder">
+                      <i class="fas fa-image"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <ng-template #noConcerts>
+        <div class="no-concerts">
+          <div class="no-concerts-content">
+            <i class="fas fa-music"></i>
+            <h3>{{ getTranslation('concerts.noConcerts') }}</h3>
+            <p *ngIf="activeTab() === 'upcoming'">
+              Sprawdź ponownie wkrótce, aby zobaczyć nadchodzące koncerty.
+            </p>
+            <p *ngIf="activeTab() === 'archive'">
+              Archiwum koncertów będzie dostępne wkrótce.
+            </p>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</section> 

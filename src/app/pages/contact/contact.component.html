@@ -1,0 +1,113 @@
+<section class="contact-page">
+  <div class="container">
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1 class="page-title">{{ getTranslation('contact.title') }}</h1>
+    </div>
+
+    <div class="contact-content">
+      <div class="grid grid-2">
+        <!-- Contact Information -->
+        <div class="contact-info">
+          <h2>Informacje kontaktowe</h2>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-details">
+              <h3>{{ getTranslation('contact.email') }}</h3>
+              <p>jonasz&#64;jochymczyk.pl</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div class="contact-details">
+              <h3>{{ getTranslation('contact.phone') }}</h3>
+              <p>+48 123 456 789</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Lokalizacja</h3>
+              <p>Olkusz, Polska</p>
+            </div>
+          </div>
+
+          <div class="social-media">
+            <h3>{{ getTranslation('contact.socialMedia') }}</h3>
+            <div class="social-links">
+              <a href="#" class="social-link">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-facebook"></i>
+                <span>Facebook</span>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-youtube"></i>
+                <span>YouTube</span>
+              </a>
+              <a href="#" class="social-link">
+                <i class="fab fa-twitter"></i>
+                <span>Twitter</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+          <h2>{{ getTranslation('contact.sendMessage') }}</h2>
+          
+          <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="name">{{ getTranslation('contact.name') }}</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name"
+                [(ngModel)]="contactForm.name"
+                required
+                class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="email">{{ getTranslation('contact.email') }}</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email"
+                [(ngModel)]="contactForm.email"
+                required
+                class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="message">{{ getTranslation('contact.message') }}</label>
+              <textarea 
+                id="message" 
+                name="message"
+                [(ngModel)]="contactForm.message"
+                required
+                rows="5"
+                class="form-input"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              {{ getTranslation('contact.send') }}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 

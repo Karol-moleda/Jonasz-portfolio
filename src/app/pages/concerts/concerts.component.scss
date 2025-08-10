@@ -1,0 +1,265 @@
+.concerts-page {
+  padding-top: 2rem;
+}
+
+/* Page Header */
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  font-size: 3.5rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+  gap: 1rem;
+}
+
+.tab-btn {
+  background: transparent;
+  border: 2px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  min-width: 150px;
+}
+
+.tab-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.tab-btn.active {
+  background-color: var(--gold);
+  color: var(--primary-black);
+  border-color: var(--gold);
+}
+
+/* Concerts Container */
+.concerts-container {
+  min-height: 400px;
+}
+
+.concerts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+}
+
+.concert-card {
+  background-color: var(--secondary-black);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.concert-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.concert-image {
+  height: 250px;
+  overflow: hidden;
+  position: relative;
+}
+
+.concert-details {
+  padding: 2rem;
+}
+
+.concert-title {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.concert-info {
+  margin-bottom: 1.5rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.info-item i {
+  color: var(--gold);
+  width: 16px;
+  text-align: center;
+}
+
+.concert-program {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: var(--dark-gray);
+  border-radius: 8px;
+  border-left: 4px solid var(--gold);
+}
+
+.concert-program h4 {
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.concert-program p {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.concert-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.concert-images {
+  margin-top: 1rem;
+}
+
+.concert-images h4 {
+  color: var(--gold);
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 0.5rem;
+}
+
+.image-thumbnail {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* No Concerts */
+.no-concerts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.no-concerts-content {
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.no-concerts-content i {
+  font-size: 4rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.no-concerts-content h3 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.no-concerts-content p {
+  color: var(--text-secondary);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Image Placeholder */
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--dark-gray) 0%, var(--medium-gray) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.image-placeholder i {
+  font-size: 3rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.image-placeholder span {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2.5rem;
+  }
+
+  .tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tab-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .concerts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .concert-details {
+    padding: 1.5rem;
+  }
+
+  .concert-title {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .concert-details {
+    padding: 1rem;
+  }
+
+  .concert-title {
+    font-size: 1.2rem;
+  }
+
+  .info-item {
+    font-size: 0.9rem;
+  }
+
+  .concert-program {
+    padding: 0.8rem;
+  }
+
+  .concert-program p {
+    font-size: 0.8rem;
+  }
+} 

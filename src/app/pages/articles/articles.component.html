@@ -1,0 +1,53 @@
+<section class="articles-page">
+  <div class="container">
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1 class="page-title">{{ getTranslation('articles.title') }}</h1>
+    </div>
+
+    <!-- Articles Grid -->
+    <div class="articles-grid">
+      <div class="article-card" *ngFor="let article of articles()">
+        <div class="article-image">
+          <div class="image-placeholder">
+            <i class="fas fa-newspaper"></i>
+            <span>{{ article.title }}</span>
+          </div>
+        </div>
+        
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="article-date">{{ formatDate(article.date) }}</span>
+            <span class="article-source">{{ article.source }}</span>
+          </div>
+          
+          <h3 class="article-title">{{ article.title }}</h3>
+          
+          <p class="article-excerpt">{{ article.excerpt }}</p>
+          
+          <div class="article-author" *ngIf="article.author">
+            <span>Autor: {{ article.author }}</span>
+          </div>
+          
+          <div class="article-actions">
+            <a 
+              [href]="article.sourceUrl" 
+              target="_blank" 
+              class="btn btn-primary">
+              {{ getTranslation('articles.readMore') }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Articles -->
+    <div class="no-articles" *ngIf="articles().length === 0">
+      <div class="no-articles-content">
+        <i class="fas fa-newspaper"></i>
+        <h3>Brak artykułów</h3>
+        <p>Artykuły będą dostępne wkrótce.</p>
+      </div>
+    </div>
+  </div>
+</section> 

@@ -1,0 +1,281 @@
+.biography-page {
+  padding-top: 2rem;
+}
+
+/* Hero Section */
+.biography-hero {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.page-title {
+  font-size: 3.5rem;
+  color: var(--gold);
+  margin-bottom: 2rem;
+}
+
+.hero-image {
+  max-width: 600px;
+  margin: 0 auto;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* Biography Content */
+.biography-content {
+  margin-bottom: 4rem;
+}
+
+.biography-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  white-space: pre-line;
+}
+
+.biography-images {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.image-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.gallery-item {
+  aspect-ratio: 4/3;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* Timeline Section */
+.timeline-section {
+  margin-bottom: 4rem;
+  background-color: var(--secondary-black);
+  padding: 3rem 0;
+  border-radius: 12px;
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--gold);
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+}
+
+.timeline-item:nth-child(odd) {
+  flex-direction: row;
+}
+
+.timeline-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timeline-date {
+  background-color: var(--gold);
+  color: var(--primary-black);
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-content {
+  background-color: var(--dark-gray);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 0 2rem;
+  flex: 1;
+  box-shadow: var(--shadow);
+}
+
+.timeline-content h3 {
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.timeline-content p {
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Repertoire Section */
+.repertoire-section {
+  background-color: var(--primary-black);
+  padding: 3rem 0;
+  border-radius: 12px;
+}
+
+.repertoire-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.repertoire-category {
+  background-color: var(--secondary-black);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.repertoire-category:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.repertoire-category h3 {
+  color: var(--gold);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 0.5rem;
+}
+
+.repertoire-category ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.repertoire-category li {
+  color: var(--text-secondary);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.repertoire-category li:hover {
+  color: var(--text-primary);
+  padding-left: 0.5rem;
+}
+
+.repertoire-category li:last-child {
+  border-bottom: none;
+}
+
+/* Image Placeholder */
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--dark-gray) 0%, var(--medium-gray) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.image-placeholder i {
+  font-size: 3rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.image-placeholder span {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2.5rem;
+  }
+
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timeline-item {
+    flex-direction: column !important;
+    align-items: flex-start;
+    margin-left: 40px;
+  }
+
+  .timeline-date {
+    margin-bottom: 1rem;
+  }
+
+  .timeline-content {
+    margin: 0;
+    width: 100%;
+  }
+
+  .repertoire-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .biography-content .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .image-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .text-content {
+    font-size: 1rem;
+  }
+
+  .timeline-item {
+    margin-left: 20px;
+  }
+
+  .timeline-date {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .timeline-content {
+    padding: 1rem;
+  }
+
+  .repertoire-category {
+    padding: 1.5rem;
+  }
+} 

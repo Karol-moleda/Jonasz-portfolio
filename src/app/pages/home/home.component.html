@@ -1,0 +1,109 @@
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">{{ getTranslation('home.title') }}</h1>
+        <p class="hero-subtitle">{{ getTranslation('home.subtitle') }}</p>
+        <h2 class="hero-heading">{{ getTranslation('home.hero.title') }}</h2>
+        <p class="hero-description">{{ getTranslation('home.hero.description') }}</p>
+        <div class="hero-buttons">
+          <button class="btn btn-primary" (click)="navigateToBiography()">
+            {{ getTranslation('home.biography.readMore') }}
+          </button>
+          <button class="btn btn-secondary" (click)="navigateToConcerts()">
+            {{ getTranslation('home.upcomingConcerts.viewAll') }}
+          </button>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="piano-image">
+          <!-- Placeholder for piano/pianist image -->
+          <div class="image-placeholder">
+            <i class="fas fa-music"></i>
+            <span>Jonasz Jochemczyk</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Biography Section -->
+<section class="section biography-section">
+  <div class="container">
+    <div class="grid grid-2">
+      <div class="biography-content">
+        <h2 class="section-title">{{ getTranslation('home.biography.title') }}</h2>
+        <p class="biography-text">{{ getTranslation('home.biography.short') }}</p>
+        <button class="btn btn-outline" (click)="navigateToBiography()">
+          {{ getTranslation('home.biography.readMore') }}
+        </button>
+      </div>
+      <div class="biography-image">
+        <div class="image-placeholder">
+          <i class="fas fa-user"></i>
+          <span>Portret artysty</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Achievements Section -->
+<section class="section achievements-section">
+  <div class="container">
+    <h2 class="section-title">{{ getTranslation('home.achievements.title') }}</h2>
+    <div class="grid grid-4">
+      <div class="achievement-card card" *ngFor="let achievement of achievements()">
+        <div class="achievement-icon">
+          <i class="fas fa-trophy"></i>
+        </div>
+        <h3 class="achievement-title">{{ achievement }}</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Upcoming Concerts Section -->
+<section class="section concerts-section">
+  <div class="container">
+    <div class="concerts-header">
+      <h2 class="section-title">{{ getTranslation('home.upcomingConcerts.title') }}</h2>
+      <button class="btn btn-outline" (click)="navigateToConcerts()">
+        {{ getTranslation('home.upcomingConcerts.viewAll') }}
+      </button>
+    </div>
+    
+    <div class="concerts-grid" *ngIf="upcomingConcerts().length > 0; else noConcerts">
+      <div class="concert-card card" *ngFor="let concert of upcomingConcerts()">
+        <div class="concert-image">
+          <div class="image-placeholder">
+            <i class="fas fa-calendar-alt"></i>
+            <span>{{ concert.title }}</span>
+          </div>
+        </div>
+        <div class="concert-info">
+          <h3 class="concert-title">{{ concert.title }}</h3>
+          <p class="concert-date">{{ formatDate(concert.date) }}</p>
+          <p class="concert-location">{{ concert.location }}, {{ concert.venue }}</p>
+          <p class="concert-program" *ngIf="concert.program">{{ concert.program }}</p>
+          <div class="concert-actions">
+            <a [href]="concert.ticketLink" 
+               target="_blank" 
+               class="btn btn-primary"
+               *ngIf="concert.ticketLink">
+              {{ getTranslation('concerts.tickets') }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <ng-template #noConcerts>
+      <div class="no-concerts">
+        <p>{{ getTranslation('concerts.noConcerts') }}</p>
+      </div>
+    </ng-template>
+  </div>
+</section> 

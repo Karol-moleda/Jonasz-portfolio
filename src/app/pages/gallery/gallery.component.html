@@ -1,0 +1,58 @@
+<section class="gallery-page">
+  <div class="container">
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1 class="page-title">{{ getTranslation('gallery.title') }}</h1>
+    </div>
+
+    <!-- Gallery Filters -->
+    <div class="gallery-filters">
+      <button 
+        class="filter-btn" 
+        [class.active]="activeCategory() === 'all'"
+        (click)="setActiveCategory('all')">
+        {{ getTranslation('gallery.all') }}
+      </button>
+      <button 
+        class="filter-btn" 
+        [class.active]="activeCategory() === 'sessions'"
+        (click)="setActiveCategory('sessions')">
+        {{ getTranslation('gallery.sessions') }}
+      </button>
+      <button 
+        class="filter-btn" 
+        [class.active]="activeCategory() === 'concerts'"
+        (click)="setActiveCategory('concerts')">
+        {{ getTranslation('gallery.concerts') }}
+      </button>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid">
+      <!-- Session Photos -->
+      <div class="gallery-item sessions" *ngFor="let i of [1,2,3,4,5,6]">
+        <div class="image-placeholder">
+          <i class="fas fa-camera"></i>
+          <span>Sesja zdjęciowa {{ i }}</span>
+        </div>
+      </div>
+
+      <!-- Concert Photos -->
+      <div class="gallery-item concerts" *ngFor="let i of [1,2,3,4,5,6,7,8]">
+        <div class="image-placeholder">
+          <i class="fas fa-music"></i>
+          <span>Koncert {{ i }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Photos -->
+    <div class="no-photos" *ngIf="activeCategory() !== 'all' && activeCategory() !== 'sessions' && activeCategory() !== 'concerts'">
+      <div class="no-photos-content">
+        <i class="fas fa-images"></i>
+        <h3>Brak zdjęć</h3>
+        <p>Zdjęcia będą dostępne wkrótce.</p>
+      </div>
+    </div>
+  </div>
+</section> 

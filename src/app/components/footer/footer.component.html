@@ -1,0 +1,39 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <div class="logo">
+          <h3>Jonasz Jochymczyk</h3>
+          <p>{{ translationService.get('footer.copyright') }}</p>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h4>{{ translationService.get('contact.title') }}</h4>
+        <div class="contact-info">
+          <p><i class="fas fa-envelope"></i> jonasz&#64;jochymczyk.pl</p>
+          <p><i class="fas fa-phone"></i> +48 123 456 789</p>
+          <p><i class="fas fa-map-marker-alt"></i> Olkusz, Polska</p>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h4>{{ translationService.get('contact.socialMedia') }}</h4>
+        <div class="social-links">
+          <a *ngFor="let social of getSocialMediaLinks()" 
+             [href]="social.url" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="social-link">
+            <i [class]="social.icon"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2024 Jonasz Jochymczyk. {{ translationService.get('footer.copyright') }}</p>
+      <p>{{ translationService.get('footer.design') }}: Jonasz Portfolio</p>
+    </div>
+  </div>
+</footer> 
