@@ -9,15 +9,15 @@
     "contact": "Kontakt"
   },
   "home": {
-    "title": "Jonasz Jochymczyk",
+    "title": "Jonasz Jochemczyk",
     "subtitle": "Pianista • Kompozytor • Artysta",
     "hero": {
       "title": "Witaj w świecie muzyki",
-      "description": "Odkryj magiczny świat fortepianu w wykonaniu Jonasza Jochymczyka - wybitnego pianisty i kompozytora z Olkusza."
+      "description": "Odkryj magiczny świat fortepianu w wykonaniu Jonasza Jochemczyka - wybitnego pianisty i kompozytora z Olkusza."
     },
     "biography": {
       "title": "Biografia",
-      "short": "Jonasz Jochymczyk to wybitny pianista i kompozytor, którego muzyka łączy klasyczną tradycję z nowoczesnymi eksperymentami. Jego interpretacje zachwycają publiczność na całym świecie.",
+      "short": "Jonasz Jochemczyk to wybitny pianista i kompozytor, którego muzyka łączy klasyczną tradycję z nowoczesnymi eksperymentami. Jego interpretacje zachwycają publiczność na całym świecie.",
       "readMore": "Czytaj więcej"
     },
     "achievements": {
@@ -36,7 +36,7 @@
   },
   "biography": {
     "title": "Biografia",
-    "fullText": "Jonasz Jochymczyk urodził się w Olkuszu, gdzie rozpoczął swoją muzyczną podróż. Od najmłodszych lat wykazywał niezwykły talent pianistyczny, który rozwijał pod okiem wybitnych pedagogów.\n\nJego edukacja muzyczna obejmowała studia w najlepszych szkołach muzycznych, gdzie doskonalił swoje umiejętności techniczne i artystyczne. Dziś jest uznawany za jednego z najwybitniejszych pianistów swojego pokolenia.\n\nRepertuar Jonasza obejmuje zarówno klasyczne dzieła mistrzów, jak i współczesne kompozycje. Jego interpretacje charakteryzują się głębokim zrozumieniem muzyki, techniczną perfekcją oraz niezwykłą wrażliwością artystyczną.\n\nJako kompozytor, Jonasz tworzy muzykę, która łączy tradycję z nowoczesnością, tworząc unikalny styl, który przemawia do współczesnej publiczności."
+    "fullText": "Jonasz Jochemczyk urodził się w Olkuszu, gdzie rozpoczął swoją muzyczną podróż. Od najmłodszych lat wykazywał niezwykły talent pianistyczny, który rozwijał pod okiem wybitnych pedagogów.\n\nJego edukacja muzyczna obejmowała studia w najlepszych szkołach muzycznych, gdzie doskonalił swoje umiejętności techniczne i artystyczne. Dziś jest uznawany za jednego z najwybitniejszych pianistów swojego pokolenia.\n\nRepertuar Jonasza obejmuje zarówno klasyczne dzieła mistrzów, jak i współczesne kompozycje. Jego interpretacje charakteryzują się głębokim zrozumieniem muzyki, techniczną perfekcją oraz niezwykłą wrażliwością artystyczną.\n\nJako kompozytor, Jonasz tworzy muzykę, która łączy tradycję z nowoczesnością, tworząc unikalny styl, który przemawia do współczesnej publiczności."
   },
   "concerts": {
     "title": "Koncerty",
@@ -76,7 +76,7 @@
     "send": "Wyślij"
   },
   "footer": {
-    "copyright": "© 2024 Jonasz Jochymczyk. Wszystkie prawa zastrzeżone.",
+    "copyright": "© 2024 Jonasz Jochemczyk. Wszystkie prawa zastrzeżone.",
     "design": "Projekt i realizacja"
   },
   "language": {

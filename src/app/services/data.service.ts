@@ -85,7 +85,7 @@ export class DataService {
     const articles: Article[] = [
       {
         id: '1',
-        title: 'Jonasz Jochymczyk - nowa gwiazda fortepianu',
+        title: 'Jonasz Jochemczyk - nowa gwiazda fortepianu',
         excerpt: 'Młody pianista z Olkusza zachwyca publiczność swoją interpretacją dzieł Chopina...',
         source: 'Rzeczpospolita',
         sourceUrl: 'https://rzeczpospolita.pl',
@@ -95,7 +95,7 @@ export class DataService {
       },
       {
         id: '2',
-        title: 'Technika i wrażliwość - recital Jonasza Jochymczyka',
+        title: 'Technika i wrażliwość - recital Jonasza Jochemczyka',
         excerpt: 'W Filharmonii Narodowej odbył się recital młodego pianisty, który pokazał...',
         source: 'Gazeta Wyborcza',
         sourceUrl: 'https://wyborcza.pl',
@@ -106,7 +106,7 @@ export class DataService {
       {
         id: '3',
         title: 'Od Olkusza do światowych scen',
-        excerpt: 'Historia Jonasza Jochymczyka to przykład, jak talent i ciężka praca...',
+        excerpt: 'Historia Jonasza Jochemczyka to przykład, jak talent i ciężka praca...',
         source: 'Polityka',
         sourceUrl: 'https://polityka.pl',
         image: 'assets/images/article-3.jpg',

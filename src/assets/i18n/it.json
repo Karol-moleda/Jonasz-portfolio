@@ -9,15 +9,15 @@
     "contact": "Contatto"
   },
   "home": {
-    "title": "Jonasz Jochymczyk",
+    "title": "Jonasz Jochemczyk",
     "subtitle": "Pianista • Compositore • Artista",
     "hero": {
       "title": "Benvenuti nel mondo della musica",
-      "description": "Scoprite il magico mondo del pianoforte interpretato da Jonasz Jochymczyk - un eccezionale pianista e compositore di Olkusz."
+      "description": "Scoprite il magico mondo del pianoforte interpretato da Jonasz Jochemczyk - un eccezionale pianista e compositore di Olkusz."
     },
     "biography": {
       "title": "Biografia",
-      "short": "Jonasz Jochymczyk è un eccellente pianista e compositore la cui musica unisce la tradizione classica con la modernità. Le sue interpretazioni incantano il pubblico in tutto il mondo.",
+      "short": "Jonasz Jochemczyk è un eccellente pianista e compositore la cui musica unisce la tradizione classica con la modernità. Le sue interpretazioni incantano il pubblico in tutto il mondo.",
       "readMore": "Leggi di più"
     },
     "achievements": {
@@ -36,7 +36,7 @@
   },
   "biography": {
     "title": "Biografia",
-    "fullText": "Jonasz Jochymczyk è nato a Olkusz, dove ha iniziato il suo percorso musicale. Fin da piccolo ha mostrato straordinarie doti pianistiche, sviluppate sotto la guida di eccellenti insegnanti.\n\nLa sua formazione musicale comprende studi presso le migliori scuole, dove ha perfezionato le sue capacità tecniche e artistiche. Oggi è considerato uno dei pianisti più straordinari della sua generazione.\n\nIl repertorio di Jonasz include sia capolavori classici che composizioni contemporanee. Le sue interpretazioni sono caratterizzate da una profonda comprensione della musica, perfezione tecnica e sensibilità artistica.\n\nCome compositore, Jonasz crea musica che unisce tradizione e modernità, dando vita a uno stile unico che parla al pubblico contemporaneo."
+    "fullText": "Jonasz Jochemczyk è nato a Olkusz, dove ha iniziato il suo percorso musicale. Fin da piccolo ha mostrato straordinarie doti pianistiche, sviluppate sotto la guida di eccellenti insegnanti.\n\nLa sua formazione musicale comprende studi presso le migliori scuole, dove ha perfezionato le sue capacità tecniche e artistiche. Oggi è considerato uno dei pianisti più straordinari della sua generazione.\n\nIl repertorio di Jonasz include sia capolavori classici che composizioni contemporanee. Le sue interpretazioni sono caratterizzate da una profonda comprensione della musica, perfezione tecnica e sensibilità artistica.\n\nCome compositore, Jonasz crea musica che unisce tradizione e modernità, dando vita a uno stile unico che parla al pubblico contemporaneo."
   },
   "concerts": {
     "title": "Concerti",
@@ -76,7 +76,7 @@
     "send": "Invia"
   },
   "footer": {
-    "copyright": "© 2024 Jonasz Jochymczyk. Tutti i diritti riservati.",
+    "copyright": "© 2024 Jonasz Jochemczyk. Tutti i diritti riservati.",
     "design": "Progetto e sviluppo"
   },
   "language": {
