@@ -1,42 +1,60 @@
 <header class="header">
   <div class="container">
-  <!-- Logo usunięte - zostaje tylko hamburger -->
 
-  <nav class="nav" [class.active]="isMenuOpen()"></nav>
+    <!-- Desktop Navigation -->
+    <nav class="nav-desktop">
+      <ul class="nav-list">
+        <li *ngFor="let item of getNavigationItems()">
+          <a [routerLink]="item.path" 
+             class="nav-link" 
+             [class.active]="isActiveRoute(item.path)">
+            {{ item.label }}
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-    <button class="mobile-menu-btn" (click)="toggleMenu()" [class.open]="isMenuOpen()" aria-label="Toggle menu" [attr.aria-expanded]="isMenuOpen()">
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+      <button class="lang-btn" 
+              [class.active]="translationService.getCurrentLanguage() === 'pl'" 
+              (click)="switchLanguage('pl')">PL</button>
+      <button class="lang-btn" 
+              [class.active]="translationService.getCurrentLanguage() === 'en'" 
+              (click)="switchLanguage('en')">EN</button>
+      <button class="lang-btn" 
+              [class.active]="translationService.getCurrentLanguage() === 'it'" 
+              (click)="switchLanguage('it')">IT</button>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" 
+            (click)="toggleMenu()" 
+            [class.open]="isMenuOpen()" 
+            aria-label="Toggle menu" 
+            [attr.aria-expanded]="isMenuOpen()">
       <span></span>
       <span></span>
       <span></span>
     </button>
   </div>
 
-  <aside class="side-panel" [class.open]="isMenuOpen()" (click)="$event.stopPropagation()" role="dialog" aria-modal="true">
-    <div class="menu-content">
-      <button class="close-btn" (click)="closeMenu()" [attr.aria-label]="translationService.get('menu.close')">
-        <span class="icon">×</span>
-        <span class="label">{{ translationService.get('menu.close') }}</span>
-      </button>
-      
-      <ul class="nav-list">
-        <li *ngFor="let item of getNavigationItems()">
-          <a [routerLink]="item.path" class="nav-link" [class.active]="isActiveRoute(item.path)" (click)="closeMenu()">{{ item.label }}</a>
-        </li>
-      </ul>
-      
-      <div class="language-switcher">
-        <button class="lang-btn" [class.active]="translationService.getCurrentLanguage() === 'pl'" (click)="switchLanguage('pl')">PL</button>
-        <button class="lang-btn" [class.active]="translationService.getCurrentLanguage() === 'en'" (click)="switchLanguage('en')">EN</button>
-        <button class="lang-btn" [class.active]="translationService.getCurrentLanguage() === 'it'" (click)="switchLanguage('it')">IT</button>
-      </div>
-      
-      <div class="side-footer">
-        <a *ngFor="let s of getSocialLinks()" [href]="s.url" target="_blank" rel="noopener" [attr.aria-label]="s.name">
-          <i [class]="s.icon"></i>
+  <!-- Mobile Navigation -->
+  <nav class="nav-mobile" [class.open]="isMenuOpen()">
+    <ul class="nav-list-mobile">
+      <li *ngFor="let item of getNavigationItems()">
+        <a [routerLink]="item.path" 
+           class="nav-link-mobile" 
+           [class.active]="isActiveRoute(item.path)" 
+           (click)="closeMenu()">
+          {{ item.label }}
         </a>
-      </div>
-    </div>
-    <div></div> <!-- Empty right column -->
-  </aside>
-  <div class="side-drawer" [class.open]="isMenuOpen()" (click)="closeMenu()"></div>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-overlay" 
+       [class.open]="isMenuOpen()" 
+       (click)="closeMenu()"></div>
 </header>

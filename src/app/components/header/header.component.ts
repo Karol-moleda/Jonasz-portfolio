@@ -43,20 +43,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return [
       { path: '/', label: this.translationService.get('navigation.home') },
       { path: '/concerts', label: this.translationService.get('navigation.concerts') },
-  { path: '/biography', label: this.translationService.get('navigation.biography') },
+      { path: '/biography', label: this.translationService.get('navigation.biography') },
       { path: '/articles', label: this.translationService.get('navigation.articles') },
       { path: '/gallery', label: this.translationService.get('navigation.gallery') },
       { path: '/recordings', label: this.translationService.get('navigation.recordings') },
       { path: '/contact', label: this.translationService.get('navigation.contact') }
-    ];
-  }
-
-  getSocialLinks() {
-    return [
-      { name: 'Instagram', icon: 'fab fa-instagram', url: 'https://instagram.com' },
-      { name: 'Facebook', icon: 'fab fa-facebook', url: 'https://facebook.com' },
-      { name: 'YouTube', icon: 'fab fa-youtube', url: 'https://youtube.com' },
-      { name: 'Twitter', icon: 'fab fa-twitter', url: 'https://twitter.com' }
     ];
   }
 
