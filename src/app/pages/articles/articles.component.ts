@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslationService } from '../../services/translation.service';
 import { DataService } from '../../services/data.service';
 import { Article } from '../../models/article';
+import {ArticleService} from '../../services/article.service';
 
 @Component({
   selector: 'app-articles',
@@ -16,16 +17,18 @@ export class ArticlesComponent implements OnInit {
 
   constructor(
     private translationService: TranslationService,
-    private dataService: DataService
+    private articleService: ArticleService,
   ) {}
 
   ngOnInit(): void {
-    this.loadArticles();
+    this.getArticles()
   }
 
-  private loadArticles(): void {
-    this.dataService.getArticles().subscribe(articles => {
-      this.articles.set(articles);
+
+  private  getArticles(): void {
+    this.articleService.getArticles().subscribe((res:any) => {
+      console.log(res);
+      this.articles.set(res.result);
     });
   }
 
@@ -41,4 +44,4 @@ export class ArticlesComponent implements OnInit {
       year: 'numeric'
     });
   }
-} 
+}

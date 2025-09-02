@@ -1,10 +1,15 @@
 export interface Article {
-  id: string;
   title: string;
-  excerpt: string;
-  source: string;
-  sourceUrl: string;
-  image: string;
+  publication: string;
+  location: string;
   date: string;
   author?: string;
-} 
+  url: string;
+  mainImage?: {
+    asset: {
+      url: string;
+    };
+    alt?: string;
+    caption?: string;
+  }
+}

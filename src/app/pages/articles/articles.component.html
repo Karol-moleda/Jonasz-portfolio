@@ -10,29 +10,29 @@
       <div class="article-card" *ngFor="let article of articles()">
         <div class="article-image">
           <div class="image-placeholder">
-            <i class="fas fa-newspaper"></i>
-            <span>{{ article.title }}</span>
+            <img [src]="article.mainImage?.asset?.url" alt="{{ article.title }}" />
           </div>
         </div>
-        
+
         <div class="article-content">
           <div class="article-meta">
             <span class="article-date">{{ formatDate(article.date) }}</span>
-            <span class="article-source">{{ article.source }}</span>
+            <span class="article-source">{{ article.publication
+              }}</span>
           </div>
-          
+
           <h3 class="article-title">{{ article.title }}</h3>
-          
-          <p class="article-excerpt">{{ article.excerpt }}</p>
-          
+
+<!--          <p class="article-excerpt">{{ article.excerpt }}</p>-->
+
           <div class="article-author" *ngIf="article.author">
             <span>Autor: {{ article.author }}</span>
           </div>
-          
+
           <div class="article-actions">
-            <a 
-              [href]="article.sourceUrl" 
-              target="_blank" 
+            <a
+              [href]="article.url"
+              target="_blank"
               class="btn btn-primary">
               {{ getTranslation('articles.readMore') }}
             </a>
@@ -50,4 +50,4 @@
       </div>
     </div>
   </div>
-</section> 
+</section>

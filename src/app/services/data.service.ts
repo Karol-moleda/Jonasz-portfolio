@@ -81,41 +81,6 @@ export class DataService {
     return of(concerts);
   }
 
-  getArticles(): Observable<Article[]> {
-    const articles: Article[] = [
-      {
-        id: '1',
-        title: 'Jonasz Jochemczyk - nowa gwiazda fortepianu',
-        excerpt: 'Młody pianista z Olkusza zachwyca publiczność swoją interpretacją dzieł Chopina...',
-        source: 'Rzeczpospolita',
-        sourceUrl: 'https://rzeczpospolita.pl',
-        image: 'assets/images/article-1.jpg',
-        date: '2024-11-15',
-        author: 'Anna Kowalska'
-      },
-      {
-        id: '2',
-        title: 'Technika i wrażliwość - recital Jonasza Jochemczyka',
-        excerpt: 'W Filharmonii Narodowej odbył się recital młodego pianisty, który pokazał...',
-        source: 'Gazeta Wyborcza',
-        sourceUrl: 'https://wyborcza.pl',
-        image: 'assets/images/article-2.jpg',
-        date: '2024-10-20',
-        author: 'Piotr Nowak'
-      },
-      {
-        id: '3',
-        title: 'Od Olkusza do światowych scen',
-        excerpt: 'Historia Jonasza Jochemczyka to przykład, jak talent i ciężka praca...',
-        source: 'Polityka',
-        sourceUrl: 'https://polityka.pl',
-        image: 'assets/images/article-3.jpg',
-        date: '2024-09-10',
-        author: 'Maria Wiśniewska'
-      }
-    ];
-    return of(articles);
-  }
 
   getRecordings(): Observable<Recording[]> {
     const recordings: Recording[] = [
@@ -167,4 +132,4 @@ export class DataService {
     ];
     return of(recordings);
   }
-} 
+}
