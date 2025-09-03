@@ -1,13 +1,13 @@
-<section class="biography-page">
+<section class="biography-page" *ngIf="biography() as bio">
   <div class="container">
     <!-- Hero Section -->
     <div class="biography-hero">
-      <h1 class="page-title">{{ getTranslation('biography.title') }}</h1>
-      <div class="hero-image">
-        <div class="image-placeholder">
-          <i class="fas fa-user"></i>
-          <span>Jonasz Jochemczyk - Portret</span>
-        </div>
+      <h1 class="page-title">{{ bio.title }}</h1>
+      <div class="hero-image" *ngIf="bio.heroImage">
+        <img
+          [src]="bio.heroImage.asset.url"
+          [alt]="bio.heroImage.alt || 'Biografia - portret'"
+        />
       </div>
     </div>
 
@@ -15,27 +15,24 @@
     <div class="biography-content">
       <div class="grid grid-2">
         <div class="biography-text">
-          <div class="text-content" [innerHTML]="getBiographyText() | nl2br"></div>
+          <div
+            class="text-content"
+            *ngFor="let section of bio.sections"
+          >
+            <h2 *ngIf="section.heading">{{ section.heading }}</h2>
+            <div
+              class="section-content"
+              [innerHTML]="portableTextToHtml(section.content)"
+            ></div>
+          </div>
         </div>
-        
+
         <div class="biography-images">
           <div class="image-gallery">
-            <div class="gallery-item">
+            <div class="gallery-item" *ngFor="let section of bio.sections">
               <div class="image-placeholder">
-                <i class="fas fa-music"></i>
-                <span>Koncert w Filharmonii</span>
-              </div>
-            </div>
-            <div class="gallery-item">
-              <div class="image-placeholder">
-                <i class="fas fa-piano"></i>
-                <span>Przy fortepianie</span>
-              </div>
-            </div>
-            <div class="gallery-item">
-              <div class="image-placeholder">
-                <i class="fas fa-award"></i>
-                <span>Nagrody i wyróżnienia</span>
+                <i class="fas fa-book"></i>
+                <span>{{ section.heading }}</span>
               </div>
             </div>
           </div>
@@ -44,87 +41,17 @@
     </div>
 
     <!-- Timeline Section -->
-    <div class="timeline-section">
+    <div class="timeline-section" *ngIf="bio.timeline?.length">
       <h2 class="section-title">Droga artystyczna</h2>
       <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-date">2010-2015</div>
+        <div class="timeline-item" *ngFor="let item of bio.timeline">
+          <div class="timeline-date">{{ item.date }}</div>
           <div class="timeline-content">
-            <h3>Edukacja muzyczna</h3>
-            <p>Studia w najlepszych szkołach muzycznych, doskonalenie umiejętności technicznych i artystycznych.</p>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
           </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-date">2015-2018</div>
-          <div class="timeline-content">
-            <h3>Pierwsze sukcesy</h3>
-            <p>Udział w międzynarodowych konkursach pianistycznych i pierwsze nagrody.</p>
-          </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-date">2018-2020</div>
-          <div class="timeline-content">
-            <h3>Rozwój kariery</h3>
-            <p>Występy w prestiżowych salach koncertowych w Polsce i za granicą.</p>
-          </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-date">2020-obecnie</div>
-          <div class="timeline-content">
-            <h3>Mistrzostwo artystyczne</h3>
-            <p>Uznanie jako jeden z najwybitniejszych pianistów swojego pokolenia.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Repertoire Section -->
-    <div class="repertoire-section">
-      <h2 class="section-title">Repertuar</h2>
-      <div class="repertoire-grid">
-        <div class="repertoire-category">
-          <h3>Fryderyk Chopin</h3>
-          <ul>
-            <li>Ballady op. 23, 38, 47, 52</li>
-            <li>Nokturny op. 9, 15, 27, 32, 37, 48, 55, 62</li>
-            <li>Polonezy op. 26, 40, 44, 53, 61</li>
-            <li>Scherza op. 20, 31, 39, 54</li>
-            <li>Sonaty op. 35, 58</li>
-          </ul>
-        </div>
-        
-        <div class="repertoire-category">
-          <h3>Ludwig van Beethoven</h3>
-          <ul>
-            <li>Sonata "Księżycowa" op. 27 nr 2</li>
-            <li>Sonata "Appassionata" op. 57</li>
-            <li>Sonata "Waldstein" op. 53</li>
-            <li>Koncerty fortepianowe op. 15, 19, 37, 58, 73</li>
-          </ul>
-        </div>
-        
-        <div class="repertoire-category">
-          <h3>Ferenc Liszt</h3>
-          <ul>
-            <li>Rapsodie węgierskie</li>
-            <li>Sonata h-moll</li>
-            <li>Transcendentalne etiudy</li>
-            <li>Etiudy koncertowe</li>
-          </ul>
-        </div>
-        
-        <div class="repertoire-category">
-          <h3>Współcześni kompozytorzy</h3>
-          <ul>
-            <li>Własne kompozycje</li>
-            <li>Dzieła współczesnych kompozytorów</li>
-            <li>Eksperymentalne utwory</li>
-          </ul>
         </div>
       </div>
     </div>
   </div>
-</section> 
+</section>

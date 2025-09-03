@@ -1,23 +1,38 @@
-import { Component } from '@angular/core';
+import {Component, OnInit, signal} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslationService } from '../../services/translation.service';
-import { Nl2brPipe } from '../../pipes/nl2br.pipe';
+import {SanityService} from '../../services/sanity.service';
+import {Biography} from '../../models/biography';
 
 @Component({
   selector: 'app-biography',
   standalone: true,
-  imports: [CommonModule, Nl2brPipe],
+  imports: [CommonModule],
   templateUrl: './biography.component.html',
   styleUrl: './biography.component.scss'
 })
-export class BiographyComponent {
-  constructor(private translationService: TranslationService) {}
-
-  getTranslation(key: string): string {
-    return this.translationService.get(key);
+export class BiographyComponent implements OnInit {
+  biography = signal<Biography | null>(null);
+  constructor(private sanityService: SanityService,) {}
+  ngOnInit() {
+    this.getBiography();
   }
 
-  getBiographyText(): string {
-    return this.translationService.get('biography.fullText');
+  private  getBiography(): void {
+    this.sanityService.getBiography().subscribe((res:any) => {
+      console.log(res)
+      this.biography.set(res.result);
+    });
   }
-} 
+
+  portableTextToHtml(blocks: any[]): string {
+    if (!blocks) return '';
+    return blocks
+      .map(block => {
+        if (block._type === 'block') {
+          return `<p>${block.children.map((child: any) => child.text).join('')}</p>`;
+        }
+        return '';
+      })
+      .join('');
+  }
+}

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslationService } from '../../services/translation.service';
 import { DataService } from '../../services/data.service';
 import { Article } from '../../models/article';
-import {ArticleService} from '../../services/article.service';
+import {SanityService} from '../../services/sanity.service';
 
 @Component({
   selector: 'app-articles',
@@ -17,7 +17,7 @@ export class ArticlesComponent implements OnInit {
 
   constructor(
     private translationService: TranslationService,
-    private articleService: ArticleService,
+    private articleService: SanityService,
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +27,6 @@ export class ArticlesComponent implements OnInit {
 
   private  getArticles(): void {
     this.articleService.getArticles().subscribe((res:any) => {
-      console.log(res);
       this.articles.set(res.result);
     });
   }

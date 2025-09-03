@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class ArticleService {
+export class SanityService {
   private projectId = 'ituyeb7l';
   private dataset = 'jonasz';
   private apiVersion = 'v2023-08-01';
@@ -31,6 +31,31 @@ export class ArticleService {
           caption
         }
       }
+    `);
+
+    return this.http.get<any>(`${this.baseUrl}?query=${query}`);
+  }
+
+  getBiography(): Observable<any> {
+    const query = encodeURIComponent(`
+    *[_type == "biography"][0]{
+    title,
+    heroImage{
+      asset->{
+        url
+      },
+      alt
+    },
+    sections[]{
+      heading,
+      content
+    },
+    timeline[]{
+      date,
+      title,
+      description
+    }
+  }
     `);
 
     return this.http.get<any>(`${this.baseUrl}?query=${query}`);
