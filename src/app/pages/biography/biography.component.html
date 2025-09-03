@@ -7,6 +7,7 @@
         <img
           [src]="bio.heroImage.asset.url"
           [alt]="bio.heroImage.alt || 'Biografia - portret'"
+          class="hero-image__content"
         />
       </div>
     </div>
@@ -14,29 +15,40 @@
     <!-- Biography Content -->
     <div class="biography-content">
       <div class="grid grid-2">
-        <div class="biography-text">
-          <div
-            class="text-content"
-            *ngFor="let section of bio.sections"
-          >
-            <h2 *ngIf="section.heading">{{ section.heading }}</h2>
-            <div
-              class="section-content"
-              [innerHTML]="portableTextToHtml(section.content)"
-            ></div>
-          </div>
-        </div>
 
         <div class="biography-images">
-          <div class="image-gallery">
-            <div class="gallery-item" *ngFor="let section of bio.sections">
-              <div class="image-placeholder">
-                <i class="fas fa-book"></i>
-                <span>{{ section.heading }}</span>
-              </div>
+          <div class="sections-tabs" *ngIf="bio.sections?.length">
+            <div class="tabs-headers" role="tablist">
+              <button
+                class="tab"
+                type="button"
+                *ngFor="let section of bio.sections | slice:0:5; let i = index"
+                [class.active]="activeTab() === i"
+                (click)="setActive(i)"
+                role="tab"
+                [attr.aria-selected]="activeTab() === i"
+              >
+                <span class="tab-icon" aria-hidden="true"><i [ngClass]="$any(section).icon || 'fas fa-book'"></i></span>
+                <span class="tab-label">{{ section.heading }}</span>
+              </button>
             </div>
+
+            <div class="tabs-panels">
+              <ng-container *ngFor="let section of bio.sections | slice:0:5; let i = index">
+                <div
+                  class="tab-panel"
+                  *ngIf="activeTab() === i"
+                  role="tabpanel"
+                >
+                  <h3 class="panel-title">{{ section.heading }}</h3>
+                  <div class="panel-content" [innerHTML]="sectionHtml(section)"></div>
+                  <a class="panel-cta" *ngIf="$any(section).link" [href]="$any(section).link" target="_blank" rel="noopener">Czytaj więcej</a>
+                </div>
+              </ng-container>
+            </div>
+
           </div>
-        </div>
+         </div>
       </div>
     </div>
 
