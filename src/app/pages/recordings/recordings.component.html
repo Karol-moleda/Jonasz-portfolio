@@ -12,28 +12,40 @@
           <h3 class="recording-title">{{ recording.title }}</h3>
           
           <div class="recording-meta">
-            <span class="composer" *ngIf="recording.composer">
-              {{ recording.composer }}
+            <span class="date" *ngIf="recording.date">
+              {{ recording.date | date:'dd.MM.yyyy' }}
             </span>
-            <span class="duration" *ngIf="recording.duration">
-              {{ recording.duration }}
-            </span>
-            <span class="year" *ngIf="recording.year">
-              {{ recording.year }}
+            <span class="tags" *ngIf="recording.tags?.length">
+              {{ recording.tags?.join(', ') }}
             </span>
           </div>
           
           <p class="recording-description" *ngIf="recording.description">
             {{ recording.description }}
           </p>
-          
-          <div class="recording-actions">
-            <button 
-              class="btn btn-primary"
-              (click)="openYouTube(recording.youtubeUrl)">
-              <i class="fab fa-youtube"></i>
-              {{ getTranslation('recordings.watchOnYoutube') }}
-            </button>
+
+          <!-- Video Embed -->
+          <div class="recording-video" *ngIf="recording.videoUrl">
+            <ng-container [ngSwitch]="getVideoType(recording.videoUrl)">
+              <!-- YouTube -->
+              <iframe *ngSwitchCase="'youtube'" 
+                      [src]="sanitizeVideoUrl(recording.videoUrl)" 
+                      frameborder="0" 
+                      allowfullscreen>
+              </iframe>
+
+              <!-- Vimeo -->
+              <iframe *ngSwitchCase="'vimeo'" 
+                      [src]="sanitizeVideoUrl(recording.videoUrl)" 
+                      frameborder="0" 
+                      allowfullscreen>
+              </iframe>
+
+              <!-- Other video -->
+              <video *ngSwitchDefault controls [src]="recording.videoUrl">
+                Twoja przeglądarka nie obsługuje wideo.
+              </video>
+            </ng-container>
           </div>
         </div>
       </div>
@@ -42,10 +54,9 @@
     <!-- No Recordings -->
     <div class="no-recordings" *ngIf="recordings().length === 0">
       <div class="no-recordings-content">
-        <i class="fas fa-music"></i>
         <h3>Brak nagrań</h3>
         <p>Nagrania będą dostępne wkrótce.</p>
       </div>
     </div>
   </div>
-</section> 
+</section>

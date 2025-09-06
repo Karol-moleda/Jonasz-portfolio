@@ -1,58 +1,90 @@
 <section class="gallery-page">
   <div class="container">
-    <!-- Page Header -->
+
     <div class="page-header">
       <h1 class="page-title">{{ getTranslation('gallery.title') }}</h1>
     </div>
 
-    <!-- Gallery Filters -->
-    <div class="gallery-filters">
-      <button 
-        class="filter-btn" 
-        [class.active]="activeCategory() === 'all'"
-        (click)="setActiveCategory('all')">
-        {{ getTranslation('gallery.all') }}
-      </button>
-      <button 
-        class="filter-btn" 
-        [class.active]="activeCategory() === 'sessions'"
-        (click)="setActiveCategory('sessions')">
-        {{ getTranslation('gallery.sessions') }}
-      </button>
-      <button 
-        class="filter-btn" 
-        [class.active]="activeCategory() === 'concerts'"
-        (click)="setActiveCategory('concerts')">
-        {{ getTranslation('gallery.concerts') }}
+    <div class="gallery-filters" *ngIf="galleries().length > 0">
+      <button
+        *ngFor="let gallery of galleries()"
+        class="filter-btn"
+        [class.active]="activeTab() === gallery._id"
+        (click)="setActiveTab(gallery._id)"
+      >
+        {{ gallery.title }}
       </button>
     </div>
 
     <!-- Gallery Grid -->
-    <div class="gallery-grid">
-      <!-- Session Photos -->
-      <div class="gallery-item sessions" *ngFor="let i of [1,2,3,4,5,6]">
-        <div class="image-placeholder">
-          <i class="fas fa-camera"></i>
-          <span>Sesja zdjęciowa {{ i }}</span>
-        </div>
-      </div>
-
-      <!-- Concert Photos -->
-      <div class="gallery-item concerts" *ngFor="let i of [1,2,3,4,5,6,7,8]">
-        <div class="image-placeholder">
-          <i class="fas fa-music"></i>
-          <span>Koncert {{ i }}</span>
-        </div>
+    <div 
+      *ngIf="activeGallery() as gallery"
+      class="gallery"
+    >
+      <div 
+        *ngFor="let photo of gallery.photos; let i = index"
+        class="gallery-item"
+        (click)="openModal(gallery.photos, i)"
+      >
+        <img 
+          [src]="photo.asset.url || ''" 
+          [alt]="photo.alt || gallery.title + ' - Photo ' + (i + 1)"
+          loading="lazy"
+        />
       </div>
     </div>
 
-    <!-- No Photos -->
-    <div class="no-photos" *ngIf="activeCategory() !== 'all' && activeCategory() !== 'sessions' && activeCategory() !== 'concerts'">
+    <div class="no-photos" *ngIf="galleries().length === 0">
       <div class="no-photos-content">
         <i class="fas fa-images"></i>
-        <h3>Brak zdjęć</h3>
-        <p>Zdjęcia będą dostępne wkrótce.</p>
+        <h3>{{ getTranslation('gallery.emptyTitle') }}</h3>
+        <p>{{ getTranslation('gallery.emptyText') }}</p>
       </div>
     </div>
   </div>
-</section> 
+
+  <!-- Custom Modal -->
+  <div 
+    *ngIf="isModalOpen()"
+    class="photo-modal-overlay"
+    (click)="closeModal()"
+  >
+    <div class="photo-modal-content" (click)="$event.stopPropagation()">
+      <!-- Close button -->
+      <button class="modal-close" (click)="closeModal()">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <!-- Counter -->
+      <div class="modal-counter">
+        {{ currentIndex() + 1 }} / {{ allPhotos().length }}
+      </div>
+
+      <!-- Navigation buttons -->
+      <button 
+        *ngIf="currentIndex() > 0"
+        class="modal-nav modal-prev"
+        (click)="prevPhoto()"
+      >
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
+      <button 
+        *ngIf="currentIndex() < allPhotos().length - 1"
+        class="modal-nav modal-next"
+        (click)="nextPhoto()"
+      >
+        <i class="fas fa-chevron-right"></i>
+      </button>
+
+      <!-- Image -->
+      <div class="modal-image-container">
+        <img 
+          [src]="currentPhoto()?.asset?.url || ''"
+          [alt]="currentPhoto()?.alt || 'Photo'"
+          class="modal-image"
+        />
+      </div>
+    </div>
+  </div>
+</section>

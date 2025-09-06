@@ -14,10 +14,9 @@ export class FooterComponent {
 
   getSocialMediaLinks() {
     return [
-      { name: 'Facebook', icon: 'fab fa-facebook', url: 'https://facebook.com' },
-      { name: 'Instagram', icon: 'fab fa-instagram', url: 'https://instagram.com' },
-      { name: 'YouTube', icon: 'fab fa-youtube', url: 'https://youtube.com' },
-      { name: 'Spotify', icon: 'fab fa-spotify', url: 'https://spotify.com' }
+      { name: 'Facebook', icon: 'fab fa-facebook', url: 'https://https://www.facebook.com/jonasz.jochemczyk' },
+      { name: 'Instagram', icon: 'fab fa-instagram', url: 'https://www.instagram.com/jonaszjochemczyk_pianist/' },
+      { name: 'YouTube', icon: 'fab fa-youtube', url: 'https://www.youtube.com/@jonaszjochemczyk' }
     ];
   }
 } 

@@ -1,0 +1,229 @@
+/* ng-gallery custom styles */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.gallery-item {
+  position: relative;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: var(--background-secondary, #1a1a1a);
+  border: 1px solid var(--border-color, #333);
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Lightbox overlay - najwyższy z-index */
+.g-overlay,
+::ng-deep .g-overlay,
+::ng-deep .lightbox-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.95) !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  backdrop-filter: blur(5px) !important;
+}
+
+.g-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  z-index: 99999;
+}
+
+::ng-deep .g-content,
+::ng-deep .lightbox-content {
+  position: relative !important;
+  max-width: 90vw !important;
+  max-height: 90vh !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.g-image,
+::ng-deep .g-image,
+::ng-deep .lightbox-image {
+  max-width: 100% !important;
+  max-height: 90vh !important;
+  object-fit: contain !important;
+  border-radius: 8px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8) !important;
+}
+
+.g-counter,
+::ng-deep .g-counter,
+::ng-deep .lightbox-counter {
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  color: var(--gold, #d4af37) !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 20px !important;
+  z-index: 100000 !important;
+  border: 1px solid var(--gold, #d4af37) !important;
+}
+
+.g-close,
+::ng-deep .g-close,
+::ng-deep .lightbox-close {
+  position: absolute !important;
+  top: 20px !important;
+  left: 20px !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+  border: 2px solid var(--gold, #d4af37) !important;
+  color: var(--gold, #d4af37) !important;
+  font-size: 2rem !important;
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+  z-index: 100000 !important;
+}
+
+.g-close:hover,
+::ng-deep .g-close:hover,
+::ng-deep .lightbox-close:hover {
+  background: var(--gold, #d4af37) !important;
+  color: var(--primary-black, #0a0a0a) !important;
+  transform: scale(1.1) !important;
+}
+
+.g-nav,
+::ng-deep .g-nav,
+::ng-deep .lightbox-nav {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+  border: 2px solid var(--gold, #d4af37) !important;
+  color: var(--gold, #d4af37) !important;
+  font-size: 2rem !important;
+  width: 70px !important;
+  height: 70px !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+  z-index: 100000 !important;
+}
+
+.g-nav:hover,
+::ng-deep .g-nav:hover,
+::ng-deep .lightbox-nav:hover {
+  background: var(--gold, #d4af37) !important;
+  color: var(--primary-black, #0a0a0a) !important;
+  transform: translateY(-50%) scale(1.1) !important;
+}
+
+.g-prev,
+::ng-deep .g-prev,
+::ng-deep .lightbox-prev {
+  left: 20px !important;
+}
+
+.g-next,
+::ng-deep .g-next,
+::ng-deep .lightbox-next {
+  right: 20px !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
+  }
+  
+  .gallery-item img {
+    height: 150px;
+  }
+  
+  .g-counter, .g-close, .g-nav,
+  ::ng-deep .g-counter, ::ng-deep .g-close, ::ng-deep .g-nav,
+  ::ng-deep .lightbox-counter, ::ng-deep .lightbox-close, ::ng-deep .lightbox-nav {
+    font-size: 1.5rem !important;
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  ::ng-deep .g-image,
+  ::ng-deep .lightbox-image {
+    max-height: 85vh !important;
+  }
+}
+
+/* Dodatkowe style dla wszystkich możliwych selektorów ng-gallery */
+::ng-deep .gallery-lightbox,
+::ng-deep ng-gallery,
+::ng-deep gallery,
+::ng-deep .lightbox-wrapper {
+  z-index: 99999 !important;
+}
+
+/* Blokowanie przewijania gdy lightbox jest otwarty */
+::ng-deep body.gallery-open,
+::ng-deep body.lightbox-open {
+  overflow: hidden !important;
+}
+
+/* Animacje dla lightbox */
+::ng-deep .g-overlay {
+  animation: fadeIn 0.3s ease-in-out !important;
+}
+
+::ng-deep .g-content {
+  animation: slideIn 0.3s ease-in-out !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { 
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}

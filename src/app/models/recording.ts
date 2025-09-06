@@ -1,9 +1,16 @@
 export interface Recording {
-  id: string;
+  _id: string;
+  _createdAt: string;
   title: string;
-  composer?: string;
-  youtubeUrl: string;
-  duration?: string;
-  year?: number;
   description?: string;
-} 
+  date?: string; 
+  status: 'current' | 'archival';
+  videoUrl: string;
+  thumbnail?: {
+    asset: {
+      url: string;
+    };
+    alt?: string;
+  };
+  tags?: string[];
+}

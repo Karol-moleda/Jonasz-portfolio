@@ -232,4 +232,7 @@ p {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gold-light);
-} 
+}
+
+/* Import ng-gallery styles */
+@import './styles/ng-gallery.scss'; 
