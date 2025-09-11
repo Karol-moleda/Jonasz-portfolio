@@ -1,10 +1,10 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslationService } from '../../services/translation.service';
-import { DataService } from '../../services/data.service';
 import { Recording } from '../../models/recording';
 import { SanityService } from '../../services/sanity.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { getLocalizedText } from '../../utils/translation.utils';
 
 @Component({
   selector: 'app-recordings',
@@ -64,5 +64,13 @@ sanitizeVideoUrl(url: string): SafeResourceUrl {
   }
 
   return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
+}
+
+getLocalizedTitle(recording: Recording): string {
+  return getLocalizedText(recording.title, this.translationService.getCurrentLanguage());
+}
+
+getLocalizedDescription(recording: Recording): string {
+  return getLocalizedText(recording.description, this.translationService.getCurrentLanguage());
 }
 } 

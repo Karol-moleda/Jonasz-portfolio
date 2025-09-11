@@ -10,7 +10,7 @@
       <div class="article-card" *ngFor="let article of articles()">
         <div class="article-image">
           <div class="image-placeholder">
-            <img [src]="article.mainImage?.asset?.url" alt="{{ article.title }}" />
+            <img [src]="article.mainImage?.asset?.url" alt="{{ getLocalizedTitle(article) }}" />
           </div>
         </div>
 
@@ -21,7 +21,7 @@
               }}</span>
           </div>
 
-          <h3 class="article-title">{{ article.title }}</h3>
+          <h3 class="article-title">{{ getLocalizedTitle(article) }}</h3>
 
 <!--          <p class="article-excerpt">{{ article.excerpt }}</p>-->
 

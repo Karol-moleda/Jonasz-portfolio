@@ -1,6 +1,8 @@
+import { LocalizedText } from './localized.types';
+
 export interface Gallery {
   _id: string;
-  title: string;
+  title: LocalizedText | string;
   location: string;
   date?: string;
   description?: string;

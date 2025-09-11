@@ -8,8 +8,13 @@ export const article = defineType({
     defineField({
       name: 'title',
       title: 'Title',
-      type: 'string',
-      description: 'Tytuł artykułu'
+      type: 'object',
+      description: 'Tytuł artykułu',
+      fields: [
+        { name: 'pl', title: 'Polski', type: 'string' },
+        { name: 'en', title: 'English', type: 'string' },
+        { name: 'it', title: 'Italiano', type: 'string' }
+      ]
     }),
     defineField({
       name: 'publication',

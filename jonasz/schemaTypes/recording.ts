@@ -3,20 +3,29 @@ import { defineField, defineType } from "sanity"
 
 export const recording = defineType({
   name: 'recording',
-  title: 'Nagranie',
+  title: 'Recording',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
       title: 'Tytuł',
-      type: 'string',
-      validation: Rule => Rule.required().max(120)
+      type: 'object',
+      validation: Rule => Rule.required(),
+      fields: [
+        { name: 'pl', title: 'Polski', type: 'string', validation: Rule => Rule.required().max(120) },
+        { name: 'en', title: 'English', type: 'string', validation: Rule => Rule.max(120) },
+        { name: 'it', title: 'Italiano', type: 'string', validation: Rule => Rule.max(120) }
+      ]
     }),
     defineField({
       name: 'description',
       title: 'Opis',
-      type: 'text',
-      rows: 3
+      type: 'object',
+      fields: [
+        { name: 'pl', title: 'Polski', type: 'text', rows: 3 },
+        { name: 'en', title: 'English', type: 'text', rows: 3 },
+        { name: 'it', title: 'Italiano', type: 'text', rows: 3 }
+      ]
     }),
     defineField({
       name: 'date',

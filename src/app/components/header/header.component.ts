@@ -1,7 +1,8 @@
 import { Component, HostListener, OnDestroy, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { TranslationService, Language } from '../../services/translation.service';
+import { TranslationService } from '../../services/translation.service';
+import { Language } from '../../models/localized.types';
 
 @Component({
   selector: 'app-header',

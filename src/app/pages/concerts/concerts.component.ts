@@ -1,46 +1,48 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslationService } from '../../services/translation.service';
-import { DataService } from '../../services/data.service';
 import { Concert } from '../../models/concert';
+import { SanityService } from '../../services/sanity.service';
+import { TranslationService } from '../../services/translation.service';
+import { getLocalizedText } from '../../utils/translation.utils';
+
 
 @Component({
   selector: 'app-concerts',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './concerts.component.html',
-  styleUrl: './concerts.component.scss'
+  styleUrls: ['./concerts.component.scss']
 })
 export class ConcertsComponent implements OnInit {
   activeTab = signal<'upcoming' | 'archive'>('upcoming');
   upcomingConcerts = signal<Concert[]>([]);
   pastConcerts = signal<Concert[]>([]);
 
-  constructor(
-    private translationService: TranslationService,
-    private dataService: DataService
-  ) {}
+  constructor(private sanityService: SanityService, private translationService: TranslationService,) {}
 
-  ngOnInit(): void {
-    this.loadConcerts();
-  }
+ngOnInit(): void {
+  this.loadConcerts();
+}
 
-  private loadConcerts(): void {
-    this.dataService.getUpcomingConcerts().subscribe(concerts => {
-      this.upcomingConcerts.set(concerts);
-    });
+private loadConcerts(): void {
+  this.sanityService.getConcerts().subscribe((concerts: Concert[]) => {
 
-    this.dataService.getPastConcerts().subscribe(concerts => {
-      this.pastConcerts.set(concerts);
-    });
-  }
+    const now = new Date();
 
+    this.upcomingConcerts.set(
+      concerts.filter(c => new Date(c.date) >= now)
+    );
+
+    this.pastConcerts.set(
+      concerts.filter(c => new Date(c.date) < now)
+    );
+
+    console.log('Upcoming concerts:', this.upcomingConcerts());
+    console.log('Past concerts:', this.pastConcerts());
+  });
+}
   setActiveTab(tab: 'upcoming' | 'archive'): void {
     this.activeTab.set(tab);
-  }
-
-  getTranslation(key: string): string {
-    return this.translationService.get(key);
   }
 
   formatDate(dateString: string): string {
@@ -53,6 +55,28 @@ export class ConcertsComponent implements OnInit {
   }
 
   getConcerts(): Concert[] {
-    return this.activeTab() === 'upcoming' ? this.upcomingConcerts() : this.pastConcerts();
+    return this.activeTab() === 'upcoming'
+      ? this.upcomingConcerts()
+      : this.pastConcerts();
   }
-} 
+
+    getTranslation(key: string): string {
+    return this.translationService.get(key);
+  }
+
+  getLocalizedTitle(concert: Concert): string {
+    return getLocalizedText(concert.title, this.translationService.getCurrentLanguage());
+  }
+
+  getLocalizedLocation(concert: Concert): string {
+    return getLocalizedText(concert.location, this.translationService.getCurrentLanguage());
+  }
+
+  getLocalizedVenue(concert: Concert): string {
+    return getLocalizedText(concert.venue, this.translationService.getCurrentLanguage());
+  }
+
+  getLocalizedProgram(concert: Concert): string {
+    return getLocalizedText(concert.program, this.translationService.getCurrentLanguage());
+  }
+}

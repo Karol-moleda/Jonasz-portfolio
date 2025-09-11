@@ -12,7 +12,7 @@
         [class.active]="activeTab() === gallery._id"
         (click)="setActiveTab(gallery._id)"
       >
-        {{ gallery.title }}
+        {{ getLocalizedTitle(gallery) }}
       </button>
     </div>
 
@@ -28,7 +28,7 @@
       >
         <img 
           [src]="photo.asset.url || ''" 
-          [alt]="photo.alt || gallery.title + ' - Photo ' + (i + 1)"
+          [alt]="photo.alt || getLocalizedTitle(gallery) + ' - Photo ' + (i + 1)"
           loading="lazy"
         />
       </div>

@@ -9,7 +9,7 @@
     <div class="recordings-grid">
       <div class="recording-card" *ngFor="let recording of recordings()">
         <div class="recording-info">
-          <h3 class="recording-title">{{ recording.title }}</h3>
+          <h3 class="recording-title">{{ getLocalizedTitle(recording) }}</h3>
           
           <div class="recording-meta">
             <span class="date" *ngIf="recording.date">
@@ -20,8 +20,8 @@
             </span>
           </div>
           
-          <p class="recording-description" *ngIf="recording.description">
-            {{ recording.description }}
+          <p class="recording-description" *ngIf="getLocalizedDescription(recording)">
+            {{ getLocalizedDescription(recording) }}
           </p>
 
           <!-- Video Embed -->

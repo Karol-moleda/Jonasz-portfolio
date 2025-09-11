@@ -103,14 +103,14 @@
         <div class="concert-image">
           <div class="image-placeholder">
             <i class="fas fa-calendar-alt"></i>
-            <span>{{ concert.title }}</span>
+            <span>{{ getLocalizedConcertTitle(concert) }}</span>
           </div>
         </div>
         <div class="concert-info">
-          <h3 class="concert-title">{{ concert.title }}</h3>
+          <h3 class="concert-title">{{ getLocalizedConcertTitle(concert) }}</h3>
           <p class="concert-date">{{ formatDate(concert.date) }}</p>
-          <p class="concert-location">{{ concert.location }}, {{ concert.venue }}</p>
-          <p class="concert-program" *ngIf="concert.program">{{ concert.program }}</p>
+          <p class="concert-location">{{ getLocalizedConcertLocation(concert) }}, {{ getLocalizedConcertVenue(concert) }}</p>
+          <p class="concert-program" *ngIf="getLocalizedConcertProgram(concert)">{{ getLocalizedConcertProgram(concert) }}</p>
           <div class="concert-actions">
             <a [href]="concert.ticketLink" 
                target="_blank" 

@@ -2,8 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
-export type Language = 'pl' | 'en' | 'it';
+import { Language } from '../models/localized.types';
 
 @Injectable({
   providedIn: 'root'

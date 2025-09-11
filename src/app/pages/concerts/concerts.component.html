@@ -4,7 +4,6 @@
     <div class="page-header">
       <h1 class="page-title">{{ getTranslation('concerts.title') }}</h1>
     </div>
-
     <!-- Tabs -->
     <div class="tabs">
       <button 
@@ -28,12 +27,12 @@
           <div class="concert-image">
             <div class="image-placeholder">
               <i class="fas fa-calendar-alt"></i>
-              <span>{{ concert.title }}</span>
+              <span>{{ getLocalizedTitle(concert) }}</span>
             </div>
           </div>
           
           <div class="concert-details">
-            <h3 class="concert-title">{{ concert.title }}</h3>
+            <h3 class="concert-title">{{ getLocalizedTitle(concert) }}</h3>
             
             <div class="concert-info">
               <div class="info-item">
@@ -48,13 +47,13 @@
               
               <div class="info-item">
                 <i class="fas fa-map-marker-alt"></i>
-                <span>{{ concert.location }}, {{ concert.venue }}</span>
+                <span>{{ getLocalizedLocation(concert) }}, {{ getLocalizedVenue(concert) }}</span>
               </div>
             </div>
             
-            <div class="concert-program" *ngIf="concert.program">
+            <div class="concert-program" *ngIf="getLocalizedProgram(concert)">
               <h4>{{ getTranslation('concerts.program') }}</h4>
-              <p>{{ concert.program }}</p>
+              <p>{{ getLocalizedProgram(concert) }}</p>
             </div>
             
             <div class="concert-actions">
@@ -71,7 +70,7 @@
                 <div class="images-grid">
                   <div class="image-thumbnail" *ngFor="let image of concert.images">
                     <div class="image-placeholder">
-                      <i class="fas fa-image"></i>
+                      <img *ngIf="image.asset?.url" [src]="image.asset.url" alt="Concert Image">
                     </div>
                   </div>
                 </div>

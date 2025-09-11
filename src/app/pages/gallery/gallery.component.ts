@@ -1,9 +1,9 @@
 import { Component, signal, OnInit, computed, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslationService } from '../../services/translation.service';
-
-import {SanityService} from '../../services/sanity.service';
-import {Gallery} from '../../models/galerry';
+import { SanityService } from '../../services/sanity.service';
+import { Gallery } from '../../models/galerry';
+import { getLocalizedText } from '../../utils/translation.utils';
 
 @Component({
   selector: 'app-gallery',
@@ -101,5 +101,9 @@ export class GalleryComponent implements OnInit {
 
   getTranslation(key: string): string {
     return this.translationService.get(key);
+  }
+
+  getLocalizedTitle(gallery: Gallery): string {
+    return getLocalizedText(gallery.title, this.translationService.getCurrentLanguage());
   }
 }

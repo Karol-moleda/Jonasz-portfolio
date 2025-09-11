@@ -18,7 +18,7 @@ export class SanityService {
   getArticles(): Observable<any> {
     const query = encodeURIComponent(`
       *[_type == "article"]{
-        title,
+        title{pl, en, it},
         publication,
         location,
         date,
@@ -40,7 +40,7 @@ export class SanityService {
   getBiography(): Observable<any> {
     const query = encodeURIComponent(`
     *[_type == "biography"][0]{
-    title,
+    title{pl, en, it},
     heroImage{
       asset->{
         url
@@ -48,13 +48,13 @@ export class SanityService {
       alt
     },
     sections[]{
-      heading,
-      content
+      heading{pl, en, it},
+      content{pl, en, it}
     },
     timeline[]{
       date,
-      title,
-      description
+      title{pl, en, it},
+      description{pl, en, it}
     }
   }
     `);
@@ -65,8 +65,8 @@ export class SanityService {
   getRecording(): Observable<any> {
     const query = encodeURIComponent(`
     *[_type == "recording"] | order(date desc) {
-  title,
-  description,
+  title{pl, en, it},
+  description{pl, en, it},
   date,
   status,
   videoUrl,
@@ -85,7 +85,7 @@ export class SanityService {
     const query = encodeURIComponent(`
       *[_type == "gallery"]{
         _id,
-        title,
+        title{pl, en, it},
         location,
         date,
         description,
@@ -115,6 +115,27 @@ export class SanityService {
       })
     );
   }
+
+getConcerts(): Observable<any[]> {
+  const query = encodeURIComponent(`
+    *[_type == "concert"] | order(date asc) {
+      title{pl, en, it},
+      date,
+      time,
+      location{pl, en, it},
+      venue{pl, en, it},
+      program{pl, en, it},
+      ticketLink,
+      images[]{
+        asset->{ url }
+      }
+    }
+  `);
+
+  return this.http
+    .get<{ result: any[] }>(`${this.baseUrl}?query=${query}`)
+    .pipe(map((res) => res.result));
+}
 
 
 }

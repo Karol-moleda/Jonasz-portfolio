@@ -1,5 +1,7 @@
+import { LocalizedText, LocalizedContent } from './localized.types';
+
 export interface Biography {
-  title: string;
+  title: LocalizedText | string;
   heroImage?: {
     asset: {
       url: string;
@@ -7,12 +9,12 @@ export interface Biography {
     alt?: string;
   };
   sections: {
-    heading: string;
-    content: any[];
+    heading: LocalizedText | string;
+    content: LocalizedContent | any[];
   }[];
   timeline: {
     date: string;
-    title: string;
-    description: string;
+    title: LocalizedText | string;
+    description: LocalizedText | string;
   }[];
 }

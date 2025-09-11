@@ -2,14 +2,19 @@ import { defineField, defineType } from "sanity";
 
 export const gallery = defineType({
   name: "gallery",
-  title: "Galeria koncertu",
+  title: "Concert gallery",
   type: "document",
   fields: [
     defineField({
       name: "title",
       title: "Tytuł galerii",
-      type: "string",
-      validation: (Rule) => Rule.required().max(120),
+      type: "object",
+      validation: (Rule) => Rule.required(),
+      fields: [
+        { name: 'pl', title: 'Polski', type: 'string', validation: Rule => Rule.required().max(120) },
+        { name: 'en', title: 'English', type: 'string', validation: Rule => Rule.max(120) },
+        { name: 'it', title: 'Italiano', type: 'string', validation: Rule => Rule.max(120) }
+      ]
     }),
     defineField({
       name: "location",

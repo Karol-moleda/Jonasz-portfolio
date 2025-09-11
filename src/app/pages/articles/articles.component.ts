@@ -1,9 +1,9 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslationService } from '../../services/translation.service';
-import { DataService } from '../../services/data.service';
 import { Article } from '../../models/article';
-import {SanityService} from '../../services/sanity.service';
+import { SanityService } from '../../services/sanity.service';
+import { getLocalizedText } from '../../utils/translation.utils';
 
 @Component({
   selector: 'app-articles',
@@ -42,5 +42,9 @@ export class ArticlesComponent implements OnInit {
       month: 'long',
       year: 'numeric'
     });
+  }
+
+  getLocalizedTitle(article: Article): string {
+    return getLocalizedText(article.title, this.translationService.getCurrentLanguage());
   }
 }

@@ -8,8 +8,13 @@ export const biography = defineType({
     defineField({
       name: 'title',
       title: 'Title',
-      type: 'string',
-      initialValue: 'Biografia'
+      type: 'object',
+      initialValue: { pl: 'Biografia', en: 'Biography', it: 'Biografia' },
+      fields: [
+        { name: 'pl', title: 'Polski', type: 'string' },
+        { name: 'en', title: 'English', type: 'string' },
+        { name: 'it', title: 'Italiano', type: 'string' }
+      ]
     }),
     defineField({
       name: 'heroImage',
@@ -36,13 +41,22 @@ export const biography = defineType({
             {
               name: 'heading',
               title: 'Nagłówek',
-              type: 'string'
+              type: 'object',
+              fields: [
+                { name: 'pl', title: 'Polski', type: 'string' },
+                { name: 'en', title: 'English', type: 'string' },
+                { name: 'it', title: 'Italiano', type: 'string' }
+              ]
             },
             {
               name: 'content',
               title: 'Treść',
-              type: 'array',
-              of: [{ type: 'block' }]
+              type: 'object',
+              fields: [
+                { name: 'pl', title: 'Polski', type: 'array', of: [{ type: 'block' }] },
+                { name: 'en', title: 'English', type: 'array', of: [{ type: 'block' }] },
+                { name: 'it', title: 'Italiano', type: 'array', of: [{ type: 'block' }] }
+              ]
             }
           ]
         }
@@ -56,9 +70,31 @@ export const biography = defineType({
         {
           type: 'object',
           fields: [
-            { name: 'date', title: 'Data', type: 'string' },
-            { name: 'title', title: 'Tytuł', type: 'string' },
-            { name: 'description', title: 'Opis', type: 'text' }
+            { 
+              name: 'date', 
+              title: 'Data', 
+              type: 'string' 
+            },
+            { 
+              name: 'title', 
+              title: 'Tytuł', 
+              type: 'object',
+              fields: [
+                { name: 'pl', title: 'Polski', type: 'string' },
+                { name: 'en', title: 'English', type: 'string' },
+                { name: 'it', title: 'Italiano', type: 'string' }
+              ]
+            },
+            { 
+              name: 'description', 
+              title: 'Opis', 
+              type: 'object',
+              fields: [
+                { name: 'pl', title: 'Polski', type: 'text' },
+                { name: 'en', title: 'English', type: 'text' },
+                { name: 'it', title: 'Italiano', type: 'text' }
+              ]
+            }
           ]
         }
       ]

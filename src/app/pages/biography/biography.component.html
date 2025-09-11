@@ -2,7 +2,7 @@
   <div class="container">
     <!-- Hero Section -->
     <div class="biography-hero">
-      <h1 class="page-title">{{ bio.title }}</h1>
+      <h1 class="page-title">{{ getLocalizedTitle() }}</h1>
       <div class="hero-image" *ngIf="bio.heroImage">
         <img
           [src]="bio.heroImage.asset.url"
@@ -29,7 +29,7 @@
                 [attr.aria-selected]="activeTab() === i"
               >
                 <span class="tab-icon" aria-hidden="true"><i [ngClass]="$any(section).icon || 'fas fa-book'"></i></span>
-                <span class="tab-label">{{ section.heading }}</span>
+                <span class="tab-label">{{ getLocalizedHeading(section) }}</span>
               </button>
             </div>
 
@@ -40,7 +40,7 @@
                   *ngIf="activeTab() === i"
                   role="tabpanel"
                 >
-                  <h3 class="panel-title">{{ section.heading }}</h3>
+                  <h3 class="panel-title">{{ getLocalizedHeading(section) }}</h3>
                   <div class="panel-content" [innerHTML]="sectionHtml(section)"></div>
                   <a class="panel-cta" *ngIf="$any(section).link" [href]="$any(section).link" target="_blank" rel="noopener">Czytaj więcej</a>
                 </div>

@@ -1,8 +1,10 @@
+import { LocalizedText } from './localized.types';
+
 export interface Recording {
   _id: string;
   _createdAt: string;
-  title: string;
-  description?: string;
+  title: LocalizedText | string;
+  description?: LocalizedText | string;
   date?: string; 
   status: 'current' | 'archival';
   videoUrl: string;

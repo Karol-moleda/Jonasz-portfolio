@@ -2,6 +2,8 @@ import {Component, OnInit, signal} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {SanityService} from '../../services/sanity.service';
 import {Biography} from '../../models/biography';
+import { TranslationService } from '../../services/translation.service';
+import { getLocalizedText, getLocalizedContent } from '../../utils/translation.utils';
 
 @Component({
   selector: 'app-biography',
@@ -14,7 +16,10 @@ export class BiographyComponent implements OnInit {
   biography = signal<Biography | null>(null);
 
   activeTab = signal<number>(0);
-  constructor(private sanityService: SanityService,) {}
+  constructor(
+    private sanityService: SanityService,
+    private translationService: TranslationService
+  ) {}
   ngOnInit() {
     this.getBiography();
   }
@@ -28,7 +33,7 @@ export class BiographyComponent implements OnInit {
       this.biography.set(result);
 
       const visible = (normalizedSections || []).slice(0, 5);
-      const lowerHeadings = visible.map((s: any) => (s?.heading || '').toLowerCase());
+      const lowerHeadings = visible.map((s: any) => this.getLocalizedHeading(s).toLowerCase());
       const idx = lowerHeadings.findIndex((h: string) =>
         h.includes('wczesne życie') ||
         h.includes('wczesne zycie') ||
@@ -78,6 +83,29 @@ export class BiographyComponent implements OnInit {
     this.activeTab.set(i);
   }
 
+  // Helper functions for localization
+  getLocalizedTitle(): string {
+    const bio = this.biography();
+    if (!bio) return '';
+    return getLocalizedText(bio.title, this.translationService.getCurrentLanguage());
+  }
+
+  getLocalizedHeading(section: any): string {
+    return getLocalizedText(section.heading, this.translationService.getCurrentLanguage());
+  }
+
+  getLocalizedContent(section: any): any[] {
+    return getLocalizedContent(section.content, this.translationService.getCurrentLanguage());
+  }
+
+  getLocalizedTimelineTitle(item: any): string {
+    return getLocalizedText(item.title, this.translationService.getCurrentLanguage());
+  }
+
+  getLocalizedTimelineDescription(item: any): string {
+    return getLocalizedText(item.description, this.translationService.getCurrentLanguage());
+  }
+
   private extractNumberedSegment(blocks: any[], targetHeading: string): string | null {
     if (!blocks || !blocks.length) return null;
     const fullText = blocks
@@ -115,14 +143,17 @@ export class BiographyComponent implements OnInit {
   }
 
   sectionHtml(section: any): string {
+    // Get localized content
+    const localizedContent = this.getLocalizedContent(section);
+    const localizedHeading = this.getLocalizedHeading(section);
 
-    const extracted = this.extractNumberedSegment(section?.content || [], section?.heading || '');
+    const extracted = this.extractNumberedSegment(localizedContent || [], localizedHeading || '');
     if (extracted) {
       const paras = extracted.split(/\n\n|\n/).map(p => p.trim()).filter(Boolean);
       return paras.map(p => `<p>${p}</p>`).join('');
     }
 
-    const html = this.portableTextToHtml(section?.content || []);
+    const html = this.portableTextToHtml(localizedContent || []);
     return html && html.trim() ? html : '<p>Brak treści. Proszę dodać zawartość tej sekcji w CMS.</p>';
   }
 
