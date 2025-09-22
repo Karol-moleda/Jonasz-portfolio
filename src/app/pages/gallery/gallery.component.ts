@@ -32,6 +32,7 @@ export class GalleryComponent implements OnInit {
 
   ngOnInit(): void {
     this.sanityService.getGalleries().subscribe((data) => {
+      console.log('Fetched galleries:', data);
       this.galleries.set(data);
 
       if (data.length > 0) {

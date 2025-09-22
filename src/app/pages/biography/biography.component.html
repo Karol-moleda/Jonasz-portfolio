@@ -59,8 +59,8 @@
         <div class="timeline-item" *ngFor="let item of bio.timeline">
           <div class="timeline-date">{{ item.date }}</div>
           <div class="timeline-content">
-            <h3>{{ item.title }}</h3>
-            <p>{{ item.description }}</p>
+            <h3>{{  getLocalizedTimelineTitle(item)  }}</h3>
+            <p>{{ getLocalizedTimelineDescription(item) }}</p>
           </div>
         </div>
       </div>

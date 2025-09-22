@@ -10,7 +10,7 @@
   },
   "home": {
     "title": "Jonasz Jochemczyk",
-    "subtitle": "Pianista • Kompozytor • Artysta",
+    "subtitle": "Pianista • Artysta",
     "hero": {
       "title": "Witaj w świecie muzyki",
       "description": "Odkryj magiczny świat fortepianu w wykonaniu Jonasza Jochemczyka - wybitnego pianisty i kompozytora z Olkusza."
@@ -25,7 +25,6 @@
       "items": [
         "Laureat międzynarodowych konkursów pianistycznych",
         "Występy w prestiżowych salach koncertowych",
-        "Nagrania dla wiodących wytwórni muzycznych",
         "Współpraca z wybitnymi dyrygentami i orkiestrami"
       ]
     },

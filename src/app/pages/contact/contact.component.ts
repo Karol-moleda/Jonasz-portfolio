@@ -23,19 +23,15 @@ export class ContactComponent {
     return this.translationService.get(key);
   }
 
-  onSubmit(): void {
-    // Handle form submission
-    console.log('Form submitted:', this.contactForm);
-    // Here you would typically send the form data to your backend
-    alert('Dziękujemy za wiadomość! Skontaktujemy się z Tobą wkrótce.');
-    this.resetForm();
-  }
-
-  private resetForm(): void {
-    this.contactForm = {
-      name: '',
-      email: '',
-      message: ''
-    };
+  getMailtoLink(): string {
+    const email = 'jonaszjochemczyk@o2.pl';
+    const subject = encodeURIComponent(`Wiadomość od ${this.contactForm.name || 'Użytkownika'}`);
+    const body = encodeURIComponent(
+      `Imię: ${this.contactForm.name}\n` +
+      `Email: ${this.contactForm.email}\n\n` +
+      `Wiadomość:\n${this.contactForm.message}`
+    );
+    
+    return `mailto:${email}?subject=${subject}&body=${body}`;
   }
 } 

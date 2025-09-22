@@ -54,7 +54,7 @@
         <div class="contact-form">
           <h2>{{ getTranslation('contact.sendMessage') }}</h2>
           
-          <form (ngSubmit)="onSubmit()">
+          <form>
             <div class="form-group">
               <label for="name">{{ getTranslation('contact.name') }}</label>
               <input 
@@ -62,7 +62,6 @@
                 id="name" 
                 name="name"
                 [(ngModel)]="contactForm.name"
-                required
                 class="form-input">
             </div>
 
@@ -73,7 +72,6 @@
                 id="email" 
                 name="email"
                 [(ngModel)]="contactForm.email"
-                required
                 class="form-input">
             </div>
 
@@ -83,14 +81,13 @@
                 id="message" 
                 name="message"
                 [(ngModel)]="contactForm.message"
-                required
                 rows="5"
                 class="form-input"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">
+            <a [href]="getMailtoLink()" class="btn btn-primary">
               {{ getTranslation('contact.send') }}
-            </button>
+            </a>
           </form>
         </div>
       </div>
