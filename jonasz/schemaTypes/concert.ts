@@ -6,6 +6,15 @@ export const concert = defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'poster',
+      title: 'Poster',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        { name: 'alt', title: 'Alt text', type: 'string' }
+      ]
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'object',
@@ -57,9 +66,56 @@ export const concert = defineType({
       ]
     }),
     defineField({
-      name: 'ticketLink',
-      title: 'Ticket Link',
-      type: 'url',
+      name: 'ticketing',
+      title: 'Ticketing Information',
+      type: 'object',
+      fields: [
+        {
+          name: 'type',
+          title: 'Concert Type',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'Free Entry', value: 'free' },
+              { title: 'Paid Tickets', value: 'paid' },
+              { title: 'Registration Required', value: 'registration' }
+            ],
+            layout: 'radio'
+          },
+          initialValue: 'free'
+        },
+        {
+          name: 'eventLink',
+          title: 'Event Link',
+          type: 'url',
+          description: 'Link to Facebook event, website, or other event page'
+        },
+        {
+          name: 'ticketLink',
+          title: 'Ticket Purchase Link',
+          type: 'url',
+          description: 'Link where tickets can be purchased (only for paid concerts)',
+          hidden: ({ parent }) => parent?.type !== 'paid'
+        },
+        {
+          name: 'registrationLink',
+          title: 'Registration Link',
+          type: 'url',
+          description: 'Link for registration (only for registration required concerts)',
+          hidden: ({ parent }) => parent?.type !== 'registration'
+        },
+        {
+          name: 'price',
+          title: 'Ticket Price',
+          type: 'object',
+          hidden: ({ parent }) => parent?.type === 'free',
+          fields: [
+            { name: 'pl', title: 'Polski', type: 'string', placeholder: 'np. "20 zł" lub "15-25 zł"' },
+            { name: 'en', title: 'English', type: 'string', placeholder: 'e.g. "20 PLN" or "15-25 PLN"' },
+            { name: 'it', title: 'Italiano', type: 'string', placeholder: 'es. "20 PLN" o "15-25 PLN"' }
+          ]
+        }
+      ]
     }),
     defineField({
       name: 'images',

@@ -16,21 +16,23 @@
       </button>
     </div>
 
-    <!-- Gallery Grid -->
-    <div 
-      *ngIf="activeGallery() as gallery"
-      class="gallery"
-    >
-      <div 
-        *ngFor="let photo of gallery.photos; let i = index"
-        class="gallery-item"
-        (click)="openModal(gallery.photos, i)"
-      >
-        <img 
-          [src]="photo.asset.url || ''" 
-          [alt]="photo.alt || getLocalizedTitle(gallery) + ' - Photo ' + (i + 1)"
-          loading="lazy"
-        />
+    <!-- Modern Masonry Gallery -->
+    <div *ngIf="activeGallery() as gallery" class="modern-gallery">
+      <div class="masonry-grid">
+        <div 
+          *ngFor="let photo of gallery.photos; let i = index" 
+          class="masonry-item"
+          (click)="openLightbox(i)"
+        >
+          <img 
+            [src]="photo.asset.url" 
+            [alt]="photo.alt || getLocalizedTitle(gallery) + ' - Photo ' + (i + 1)"
+            loading="lazy"
+          />
+          <div class="image-overlay">
+            <i class="fas fa-expand-alt"></i>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -43,47 +45,63 @@
     </div>
   </div>
 
-  <!-- Custom Modal -->
+  <!-- Modern Lightbox Modal -->
   <div 
-    *ngIf="isModalOpen()"
-    class="photo-modal-overlay"
-    (click)="closeModal()"
+    *ngIf="isLightboxOpen()"
+    class="lightbox-overlay"
+    (click)="closeLightbox()"
+    [@fadeIn]
   >
-    <div class="photo-modal-content" (click)="$event.stopPropagation()">
-      <!-- Close button -->
-      <button class="modal-close" (click)="closeModal()">
+    <div class="lightbox-container" (click)="$event.stopPropagation()">
+      
+      <!-- Close Button -->
+      <button class="lightbox-btn lightbox-close" (click)="closeLightbox()">
         <i class="fas fa-times"></i>
       </button>
 
-      <!-- Counter -->
-      <div class="modal-counter">
-        {{ currentIndex() + 1 }} / {{ allPhotos().length }}
+      <!-- Image Counter -->
+      <div class="lightbox-counter">
+        {{ currentImageIndex() + 1 }} / {{ currentImages().length }}
       </div>
 
-      <!-- Navigation buttons -->
+      <!-- Navigation Buttons -->
       <button 
-        *ngIf="currentIndex() > 0"
-        class="modal-nav modal-prev"
-        (click)="prevPhoto()"
+        *ngIf="currentImageIndex() > 0"
+        class="lightbox-btn lightbox-prev"
+        (click)="prevImage()"
       >
         <i class="fas fa-chevron-left"></i>
       </button>
 
       <button 
-        *ngIf="currentIndex() < allPhotos().length - 1"
-        class="modal-nav modal-next"
-        (click)="nextPhoto()"
+        *ngIf="currentImageIndex() < currentImages().length - 1"
+        class="lightbox-btn lightbox-next"
+        (click)="nextImage()"
       >
         <i class="fas fa-chevron-right"></i>
       </button>
 
-      <!-- Image -->
-      <div class="modal-image-container">
+      <!-- Main Image -->
+      <div class="lightbox-content">
         <img 
-          [src]="currentPhoto()?.asset?.url || ''"
-          [alt]="currentPhoto()?.alt || 'Photo'"
-          class="modal-image"
+          *ngIf="currentImage() as image"
+          [src]="image.asset.url"
+          [alt]="image.alt || 'Gallery Image'"
+          class="lightbox-image"
+          [@zoomIn]
         />
+      </div>
+
+      <!-- Thumbnail Strip -->
+      <div class="lightbox-thumbs" *ngIf="currentImages().length > 1">
+        <div 
+          *ngFor="let photo of currentImages(); let i = index"
+          class="thumb-item"
+          [class.active]="i === currentImageIndex()"
+          (click)="currentImageIndex.set(i)"
+        >
+          <img [src]="photo.asset.url" [alt]="photo.alt || 'Thumbnail'">
+        </div>
       </div>
     </div>
   </div>

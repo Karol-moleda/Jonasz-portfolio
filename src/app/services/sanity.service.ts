@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {map, Observable} from 'rxjs';
-import {Gallery} from '../models/galerry';
+import { map, Observable } from 'rxjs';
+import { Gallery } from '../models/galerry';
+import { Concert } from '../models/concert';
 
 @Injectable({
   providedIn: 'root',
@@ -116,16 +117,26 @@ export class SanityService {
     );
   }
 
-getConcerts(): Observable<any[]> {
+getConcerts(): Observable<Concert[]> {
   const query = encodeURIComponent(`
     *[_type == "concert"] | order(date asc) {
+      poster{
+        asset->{ url },
+        alt
+      },
       title{pl, en, it},
       date,
       time,
       location{pl, en, it},
       venue{pl, en, it},
       program{pl, en, it},
-      ticketLink,
+      ticketing{
+        type,
+        eventLink,
+        ticketLink,
+        registrationLink,
+        price{pl, en, it}
+      },
       images[]{
         asset->{ url }
       }
@@ -133,7 +144,7 @@ getConcerts(): Observable<any[]> {
   `);
 
   return this.http
-    .get<{ result: any[] }>(`${this.baseUrl}?query=${query}`)
+    .get<{ result: Concert[] }>(`${this.baseUrl}?query=${query}`)
     .pipe(map((res) => res.result));
 }
 

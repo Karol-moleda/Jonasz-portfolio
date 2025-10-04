@@ -4,6 +4,7 @@ import { TranslationService } from '../../services/translation.service';
 import { SanityService } from '../../services/sanity.service';
 import { Gallery } from '../../models/galerry';
 import { getLocalizedText } from '../../utils/translation.utils';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-gallery',
@@ -11,6 +12,24 @@ import { getLocalizedText } from '../../utils/translation.utils';
   imports: [CommonModule],
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('300ms ease-out', style({ opacity: 0 }))
+      ])
+    ]),
+    trigger('zoomIn', [
+      transition(':enter', [
+        style({ transform: 'scale(0.8)', opacity: 0 }),
+        animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)', 
+          style({ transform: 'scale(1)', opacity: 1 }))
+      ])
+    ])
+  ]
 })
 export class GalleryComponent implements OnInit {
   galleries = signal<Gallery[]>([]);
@@ -19,11 +38,17 @@ export class GalleryComponent implements OnInit {
     this.galleries().find((g) => g._id === this.activeTab())
   );
 
-  // Modal state
-  isModalOpen = signal<boolean>(false);
-  currentPhoto = signal<any>(null);
-  currentIndex = signal<number>(0);
-  allPhotos = signal<any[]>([]);
+  // Modern lightbox state
+  isLightboxOpen = signal<boolean>(false);
+  currentImageIndex = signal<number>(0);
+  currentImages = signal<any[]>([]);
+  
+  // Computed for current image
+  currentImage = computed(() => {
+    const images = this.currentImages();
+    const index = this.currentImageIndex();
+    return images[index] || null;
+  });
 
   constructor(
     private translationService: TranslationService,
@@ -45,56 +70,50 @@ export class GalleryComponent implements OnInit {
     this.activeTab.set(galleryId);
   }
 
-  openModal(photos: any[], index: number): void {
-    this.allPhotos.set(photos);
-    this.currentIndex.set(index);
-    this.currentPhoto.set(photos[index]);
-    this.isModalOpen.set(true);
-    // Blokuj scrollowanie strony gdy modal jest otwarty
-    document.body.style.overflow = 'hidden';
+  openLightbox(index: number): void {
+    const gallery = this.activeGallery();
+    if (gallery && gallery.photos) {
+      this.currentImages.set(gallery.photos);
+      this.currentImageIndex.set(index);
+      this.isLightboxOpen.set(true);
+      document.body.style.overflow = 'hidden';
+    }
   }
 
-  closeModal(): void {
-    this.isModalOpen.set(false);
-    this.currentPhoto.set(null);
-    this.allPhotos.set([]);
-    // Przywróć scrollowanie strony
+  closeLightbox(): void {
+    this.isLightboxOpen.set(false);
+    this.currentImages.set([]);
+    this.currentImageIndex.set(0);
     document.body.style.overflow = 'auto';
   }
 
-  nextPhoto(): void {
-    const photos = this.allPhotos();
-    const currentIdx = this.currentIndex();
-    if (currentIdx < photos.length - 1) {
-      const newIndex = currentIdx + 1;
-      this.currentIndex.set(newIndex);
-      this.currentPhoto.set(photos[newIndex]);
+  nextImage(): void {
+    const images = this.currentImages();
+    const currentIndex = this.currentImageIndex();
+    if (currentIndex < images.length - 1) {
+      this.currentImageIndex.set(currentIndex + 1);
     }
   }
 
-  prevPhoto(): void {
-    const photos = this.allPhotos();
-    const currentIdx = this.currentIndex();
-    if (currentIdx > 0) {
-      const newIndex = currentIdx - 1;
-      this.currentIndex.set(newIndex);
-      this.currentPhoto.set(photos[newIndex]);
+  prevImage(): void {
+    const currentIndex = this.currentImageIndex();
+    if (currentIndex > 0) {
+      this.currentImageIndex.set(currentIndex - 1);
     }
   }
 
-  // Obsługa klawiatury
   @HostListener('document:keydown', ['$event'])
   onKeyDown(event: KeyboardEvent): void {
-    if (this.isModalOpen()) {
+    if (this.isLightboxOpen()) {
       switch (event.key) {
         case 'Escape':
-          this.closeModal();
+          this.closeLightbox();
           break;
         case 'ArrowRight':
-          this.nextPhoto();
+          this.nextImage();
           break;
         case 'ArrowLeft':
-          this.prevPhoto();
+          this.prevImage();
           break;
       }
     }

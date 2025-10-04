@@ -25,10 +25,20 @@
       <div class="concerts-grid" *ngIf="getConcerts().length > 0; else noConcerts">
         <div class="concert-card" *ngFor="let concert of getConcerts()">
           <div class="concert-image">
-            <div class="image-placeholder">
-              <i class="fas fa-calendar-alt"></i>
-              <span>{{ getLocalizedTitle(concert) }}</span>
+            <ng-container *ngIf="concert.poster?.asset?.url as posterUrl; else placeholder">
+              <img [src]="posterUrl" [alt]="concert.poster?.alt || getLocalizedTitle(concert)" />
+            </ng-container>
+            <!-- Free entry overlay badge on image -->
+            <div class="ticket-type-badge" *ngIf="getTicketingType(concert) === 'free'">
+              <i class="fas fa-ticket-alt"></i>
+              {{ getTranslation('concerts.freeEntry') }}
             </div>
+            <ng-template #placeholder>
+              <div class="image-placeholder">
+                <i class="fas fa-calendar-alt"></i>
+                <span>{{ getLocalizedTitle(concert) }}</span>
+              </div>
+            </ng-template>
           </div>
           
           <div class="concert-details">
@@ -49,6 +59,12 @@
                 <i class="fas fa-map-marker-alt"></i>
                 <span>{{ getLocalizedLocation(concert) }}, {{ getLocalizedVenue(concert) }}</span>
               </div>
+
+              <!-- Explicit info line for free entry -->
+              <div class="info-item" *ngIf="getTicketingType(concert) === 'free'">
+                <i class="fas fa-ticket-alt"></i>
+                <span>{{ getTranslation('concerts.freeEntry') }}</span>
+              </div>
             </div>
             
             <div class="concert-program" *ngIf="getLocalizedProgram(concert)">
@@ -57,22 +73,96 @@
             </div>
             
             <div class="concert-actions">
-              <a 
-                [href]="concert.ticketLink" 
-                target="_blank" 
-                class="btn btn-primary"
-                *ngIf="concert.ticketLink && activeTab() === 'upcoming'">
-                {{ getTranslation('concerts.tickets') }}
-              </a>
+              <!-- Price information for paid concerts -->
+              <div class="concert-price" *ngIf="getTicketingType(concert) === 'paid' && getLocalizedPrice(concert)">
+                <span class="price-label">{{ getTranslation('concerts.price') }}:</span>
+                <span class="price-value">{{ getLocalizedPrice(concert) }}</span>
+              </div>
+
+              <!-- Action buttons -->
+              <div class="action-buttons" *ngIf="activeTab() === 'upcoming'">
+                <!-- Free entry concert -->
+                <ng-container *ngIf="getTicketingType(concert) === 'free'">
+                  <span class="free-entry-badge">
+                    <i class="fas fa-gift"></i>
+                    {{ getTranslation('concerts.freeEntry') }}
+                  </span>
+                  <a 
+                    *ngIf="getEventLink(concert)" 
+                    [href]="getEventLink(concert)!" 
+                    target="_blank" 
+                    class="btn btn-secondary">
+                    <i class="fas fa-info-circle"></i>
+                    {{ getTranslation('concerts.moreInfo') }}
+                  </a>
+                </ng-container>
+
+                <!-- Paid tickets concert -->
+                <ng-container *ngIf="getTicketingType(concert) === 'paid'">
+                  <a 
+                    *ngIf="getTicketLink(concert)" 
+                    [href]="getTicketLink(concert)!" 
+                    target="_blank" 
+                    class="btn btn-primary">
+                    <i class="fas fa-ticket-alt"></i>
+                    {{ getTranslation('concerts.tickets') }}
+                  </a>
+                  <a 
+                    *ngIf="getEventLink(concert)" 
+                    [href]="getEventLink(concert)!" 
+                    target="_blank" 
+                    class="btn btn-secondary">
+                    <i class="fas fa-calendar-alt"></i>
+                    {{ getTranslation('concerts.eventPage') }}
+                  </a>
+                </ng-container>
+
+                <!-- Registration required concert -->
+                <ng-container *ngIf="getTicketingType(concert) === 'registration'">
+                  <a 
+                    *ngIf="getRegistrationLink(concert)" 
+                    [href]="getRegistrationLink(concert)!" 
+                    target="_blank" 
+                    class="btn btn-primary">
+                    <i class="fas fa-user-plus"></i>
+                    {{ getTranslation('concerts.register') }}
+                  </a>
+                  <a 
+                    *ngIf="getEventLink(concert)" 
+                    [href]="getEventLink(concert)!" 
+                    target="_blank" 
+                    class="btn btn-secondary">
+                    <i class="fas fa-info-circle"></i>
+                    {{ getTranslation('concerts.moreInfo') }}
+                  </a>
+                </ng-container>
+
+                <!-- Legacy support for old ticketLink -->
+                <ng-container *ngIf="!getTicketingType(concert) && getTicketLink(concert)">
+                  <a 
+                    [href]="getTicketLink(concert)!" 
+                    target="_blank" 
+                    class="btn btn-primary">
+                    <i class="fas fa-ticket-alt"></i>
+                    {{ getTranslation('concerts.tickets') }}
+                  </a>
+                </ng-container>
+              </div>
               
               <div class="concert-images" *ngIf="concert.images && concert.images.length > 0">
                 <h4>{{ getTranslation('gallery.concerts') }}</h4>
-                <div class="images-grid">
-                  <div class="image-thumbnail" *ngFor="let image of concert.images">
-                    <div class="image-placeholder">
-                      <img *ngIf="image.asset?.url" [src]="image.asset.url" alt="Concert Image">
+                <div class="images-preview">
+                  <ng-container *ngFor="let image of concert.images | slice:0:4; let last = last; let i = index">
+                    <div class="preview-item" [class.more-overlay]="i === 3 && concert.images!.length > 4">
+                      <img *ngIf="image.asset?.url" [src]="image.asset.url" alt="Concert Image" />
+                      <a *ngIf="i === 3 && concert.images!.length > 4" routerLink="/gallery" class="see-more">
+                        {{ getTranslation('home.upcomingConcerts.viewAll') }}
+                      </a>
                     </div>
-                  </div>
+                  </ng-container>
+                </div>
+                <div class="see-more-row" *ngIf="concert.images.length > 0">
+                  <a routerLink="/gallery" class="btn-link">{{ getTranslation('home.upcomingConcerts.viewAll') }}</a>
                 </div>
               </div>
             </div>

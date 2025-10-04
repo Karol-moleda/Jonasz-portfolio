@@ -1,5 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { Concert } from '../../models/concert';
 import { SanityService } from '../../services/sanity.service';
 import { TranslationService } from '../../services/translation.service';
@@ -9,7 +10,7 @@ import { getLocalizedText } from '../../utils/translation.utils';
 @Component({
   selector: 'app-concerts',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './concerts.component.html',
   styleUrls: ['./concerts.component.scss']
 })
@@ -78,5 +79,27 @@ private loadConcerts(): void {
 
   getLocalizedProgram(concert: Concert): string {
     return getLocalizedText(concert.program, this.translationService.getCurrentLanguage());
+  }
+
+  getLocalizedPrice(concert: Concert): string {
+    if (!concert.ticketing?.price) return '';
+    return getLocalizedText(concert.ticketing.price, this.translationService.getCurrentLanguage());
+  }
+
+  getTicketingType(concert: Concert): 'free' | 'paid' | 'registration' | null {
+    return concert.ticketing?.type || null;
+  }
+
+  getEventLink(concert: Concert): string | null {
+    return concert.ticketing?.eventLink || null;
+  }
+
+  getTicketLink(concert: Concert): string | null {
+    // Support both new and old structure for backward compatibility
+    return concert.ticketing?.ticketLink || concert.ticketLink || null;
+  }
+
+  getRegistrationLink(concert: Concert): string | null {
+    return concert.ticketing?.registrationLink || null;
   }
 }

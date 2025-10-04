@@ -40,7 +40,7 @@
             ],
             "scripts": [],
             "server": "src/main.server.ts",
-            "baseHref": "/Jonasz-portfolio/"
+            "baseHref": "/"
           },
           "configurations": {
             "production": {
