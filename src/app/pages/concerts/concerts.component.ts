@@ -86,8 +86,13 @@ private loadConcerts(): void {
     return getLocalizedText(concert.ticketing.price, this.translationService.getCurrentLanguage());
   }
 
-  getTicketingType(concert: Concert): 'free' | 'paid' | 'registration' | null {
-    return concert.ticketing?.type || null;
+  getTicketingType(concert: Concert): 'free' | 'paid' | 'registration' {
+    // Prefer explicit ticketing.type when present
+    if (concert.ticketing?.type) return concert.ticketing.type;
+    // Legacy fallback: if old top-level ticketLink exists, treat as paid
+    if (concert.ticketLink) return 'paid';
+    // Default: free entry
+    return 'free';
   }
 
   getEventLink(concert: Concert): string | null {

@@ -32,7 +32,7 @@ export class SanityService {
           alt,
           caption
         }
-      }
+      } | order(date desc)
     `);
 
     return this.http.get<any>(`${this.baseUrl}?query=${query}`);

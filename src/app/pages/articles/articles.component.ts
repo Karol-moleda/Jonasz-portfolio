@@ -27,7 +27,16 @@ export class ArticlesComponent implements OnInit {
 
   private  getArticles(): void {
     this.articleService.getArticles().subscribe((res:any) => {
-      this.articles.set(res.result);
+      const sorted = [...res.result].sort((a: Article, b: Article) => {
+        const da = new Date(a.date).getTime();
+        const db = new Date(b.date).getTime();
+        // Handle invalid dates: place them at the end
+        if (isNaN(da) && isNaN(db)) return 0;
+        if (isNaN(da)) return 1;
+        if (isNaN(db)) return -1;
+        return db - da; // newest first
+      });
+      this.articles.set(sorted);
     });
   }
 
