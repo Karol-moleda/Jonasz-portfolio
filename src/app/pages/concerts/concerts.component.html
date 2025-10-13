@@ -20,7 +20,23 @@
       </button>
     </div>
 
-    <!-- Concerts Grid -->
+    <!-- Archive Year Tabs (shown only when archive is active) -->
+    <div class="archive-year-tabs" *ngIf="activeTab() === 'archive' && availableYears().length > 1">
+      <button 
+        class="year-tab-btn" 
+        [class.active]="activeArchiveYear() === 'all'"
+        (click)="setActiveArchiveYear('all')">
+        Wszystkie
+      </button>
+      <button 
+        *ngFor="let year of availableYears()"
+        class="year-tab-btn" 
+        [class.active]="activeArchiveYear() === year.toString()"
+        (click)="setActiveArchiveYear(year.toString())">
+        {{ year }}
+      </button>
+    </div>
+
     <div class="concerts-container">
       <div class="concerts-grid" *ngIf="getConcerts().length > 0; else noConcerts">
         <div class="concert-card" *ngFor="let concert of getConcerts()">
@@ -28,8 +44,7 @@
             <ng-container *ngIf="concert.poster?.asset?.url as posterUrl; else placeholder">
               <img [src]="posterUrl" [alt]="concert.poster?.alt || getLocalizedTitle(concert)" />
             </ng-container>
-            <!-- Free entry overlay badge on image -->
-            <div class="ticket-type-badge" *ngIf="getTicketingType(concert) === 'free'">
+            <div class="ticket-type-badge" *ngIf="getTicketingType(concert) === 'free' && activeTab() === 'upcoming'">
               <i class="fas fa-ticket-alt"></i>
               {{ getTranslation('concerts.freeEntry') }}
             </div>
@@ -60,8 +75,8 @@
                 <span>{{ getLocalizedLocation(concert) }}, {{ getLocalizedVenue(concert) }}</span>
               </div>
 
-              <!-- Explicit info line for free entry -->
-              <div class="info-item" *ngIf="getTicketingType(concert) === 'free'">
+              <!-- Explicit info line for free entry (only for upcoming concerts) -->
+              <div class="info-item" *ngIf="getTicketingType(concert) === 'free' && activeTab() === 'upcoming'">
                 <i class="fas fa-ticket-alt"></i>
                 <span>{{ getTranslation('concerts.freeEntry') }}</span>
               </div>
@@ -147,6 +162,17 @@
                     {{ getTranslation('concerts.tickets') }}
                   </a>
                 </ng-container>
+              </div>
+
+              <!-- Archive tab: Show only event link if available -->
+              <div class="action-buttons" *ngIf="activeTab() === 'archive' && getEventLink(concert)">
+                <a 
+                  [href]="getEventLink(concert)!" 
+                  target="_blank" 
+                  class="btn btn-secondary">
+                  <i class="fas fa-info-circle"></i>
+                  {{ getTranslation('concerts.moreInfo') }}
+                </a>
               </div>
               
               <div class="concert-images" *ngIf="concert.images && concert.images.length > 0">

@@ -3,3 +3,12 @@
   <router-outlet></router-outlet>
 </main>
 <app-footer class="footer"></app-footer>
+
+<!-- Scroll to Top Button -->
+<button 
+  class="scroll-to-top" 
+  [class.visible]="showScrollToTop()"
+  (click)="scrollToTop()"
+  aria-label="Scroll to top">
+  <i class="fas fa-chevron-up"></i>
+</button>

@@ -16,8 +16,11 @@ import { getLocalizedText } from '../../utils/translation.utils';
 })
 export class ConcertsComponent implements OnInit {
   activeTab = signal<'upcoming' | 'archive'>('upcoming');
+  activeArchiveYear = signal<string>('all'); // Changed to string to support dynamic years
   upcomingConcerts = signal<Concert[]>([]);
   pastConcerts = signal<Concert[]>([]);
+  availableYears = signal<number[]>([]); // Available years for archive tabs
+  pastConcertsByYear = signal<Map<number, Concert[]>>(new Map()); // Concerts grouped by year
 
   constructor(private sanityService: SanityService, private translationService: TranslationService,) {}
 
@@ -34,9 +37,31 @@ private loadConcerts(): void {
       concerts.filter(c => new Date(c.date) >= now)
     );
 
-    this.pastConcerts.set(
-      concerts.filter(c => new Date(c.date) < now)
-    );
+    const pastConcerts = concerts
+      .filter(c => new Date(c.date) < now)
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+    this.pastConcerts.set(pastConcerts);
+
+    // Get available years and group concerts by year
+    const yearsSet = new Set<number>();
+    const concertsByYear = new Map<number, Concert[]>();
+
+    pastConcerts.forEach(concert => {
+      const year = new Date(concert.date).getFullYear();
+      yearsSet.add(year);
+      
+      if (!concertsByYear.has(year)) {
+        concertsByYear.set(year, []);
+      }
+      concertsByYear.get(year)!.push(concert);
+    });
+
+    // Sort years in descending order (newest first)
+    const sortedYears = Array.from(yearsSet).sort((a, b) => b - a);
+    
+    this.availableYears.set(sortedYears);
+    this.pastConcertsByYear.set(concertsByYear);
 
     console.log('Upcoming concerts:', this.upcomingConcerts());
     console.log('Past concerts:', this.pastConcerts());
@@ -44,6 +69,13 @@ private loadConcerts(): void {
 }
   setActiveTab(tab: 'upcoming' | 'archive'): void {
     this.activeTab.set(tab);
+    if (tab === 'archive') {
+      this.activeArchiveYear.set('all');
+    }
+  }
+
+  setActiveArchiveYear(year: string): void {
+    this.activeArchiveYear.set(year);
   }
 
   formatDate(dateString: string): string {
@@ -56,9 +88,18 @@ private loadConcerts(): void {
   }
 
   getConcerts(): Concert[] {
-    return this.activeTab() === 'upcoming'
-      ? this.upcomingConcerts()
-      : this.pastConcerts();
+    if (this.activeTab() === 'upcoming') {
+      return this.upcomingConcerts();
+    } else {
+      // Archive tab
+      const selectedYear = this.activeArchiveYear();
+      if (selectedYear === 'all') {
+        return this.pastConcerts();
+      } else {
+        const year = parseInt(selectedYear);
+        return this.pastConcertsByYear().get(year) || [];
+      }
+    }
   }
 
     getTranslation(key: string): string {
