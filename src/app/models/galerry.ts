@@ -9,6 +9,5 @@ export interface Gallery {
   photos: {
     asset: { _ref: string; _type: string; url?: string };
     alt?: string;
-    author?: string;
   }[];
 }

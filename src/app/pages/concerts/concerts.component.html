@@ -179,11 +179,8 @@
                 <h4>{{ getTranslation('gallery.concerts') }}</h4>
                 <div class="images-preview">
                   <ng-container *ngFor="let image of concert.images | slice:0:4; let last = last; let i = index">
-                    <div class="preview-item" [class.more-overlay]="i === 3 && concert.images!.length > 4">
+                    <div class="preview-item">
                       <img *ngIf="image.asset?.url" [src]="image.asset.url" alt="Concert Image" />
-                      <a *ngIf="i === 3 && concert.images!.length > 4" routerLink="/gallery" class="see-more">
-                        {{ getTranslation('home.upcomingConcerts.viewAll') }}
-                      </a>
                     </div>
                   </ng-container>
                 </div>

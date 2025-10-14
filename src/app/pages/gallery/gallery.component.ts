@@ -126,4 +126,12 @@ export class GalleryComponent implements OnInit {
   getLocalizedTitle(gallery: Gallery): string {
     return getLocalizedText(gallery.title, this.translationService.getCurrentLanguage());
   }
+
+  getPhotoAlt(photo: any, gallery: Gallery, index: number): string {
+    if (photo.alt && photo.alt.trim()) {
+      return photo.alt;
+    }
+    const galleryTitle = this.getLocalizedTitle(gallery);
+    return `${galleryTitle} - ${this.getTranslation('gallery.photo')} ${index + 1}`;
+  }
 }

@@ -63,7 +63,10 @@
     "title": "Galleria",
     "sessions": "Servizi fotografici",
     "concerts": "Foto dei concerti",
-    "all": "Tutti"
+    "all": "Tutti",
+    "photo": "Foto",
+    "emptyTitle": "Nessuna foto",
+    "emptyText": "La galleria è vuota. Ricontrolla più tardi."
   },
   "recordings": {
     "title": "Registrazioni",

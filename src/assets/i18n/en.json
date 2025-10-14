@@ -63,7 +63,10 @@
     "title": "Gallery",
     "sessions": "Photo sessions",
     "concerts": "Concert photos",
-    "all": "All"
+    "all": "All",
+    "photo": "Photo",
+    "emptyTitle": "No photos",
+    "emptyText": "Gallery is empty. Check back later."
   },
   "recordings": {
     "title": "Recordings",

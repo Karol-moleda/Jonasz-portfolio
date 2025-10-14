@@ -41,21 +41,20 @@ export const gallery = defineType({
       name: "photos",
       title: "Zdjęcia",
       type: "array",
+      description: "Możesz przeciągnąć i upuścić wiele zdjęć naraz",
       of: [
         {
           type: "image",
-          options: { hotspot: true },
+          options: { 
+            hotspot: true,
+            accept: '.jpg,.jpeg,.png,.webp'
+          },
           fields: [
             defineField({
               name: "alt",
-              title: "Alt text",
+              title: "Alt text (opcjonalny)",
               type: "string",
-              validation: (Rule) => Rule.required(),
-            }),
-            defineField({
-              name: "author",
-              title: "Autor zdjęcia",
-              type: "string",
+              description: "Jeśli puste, zostanie automatycznie wygenerowany z tytułu galerii",
             }),
           ],
         },

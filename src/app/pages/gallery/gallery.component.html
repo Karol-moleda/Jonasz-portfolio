@@ -26,7 +26,7 @@
         >
           <img 
             [src]="photo.asset.url" 
-            [alt]="photo.alt || getLocalizedTitle(gallery) + ' - Photo ' + (i + 1)"
+            [alt]="getPhotoAlt(photo, gallery, i)"
             loading="lazy"
           />
           <div class="image-overlay">
@@ -86,7 +86,7 @@
         <img 
           *ngIf="currentImage() as image"
           [src]="image.asset.url"
-          [alt]="image.alt || 'Gallery Image'"
+          [alt]="getPhotoAlt(image, activeGallery()!, currentImageIndex())"
           class="lightbox-image"
           [@zoomIn]
         />
