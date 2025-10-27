@@ -113,7 +113,7 @@
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.95);
-  z-index: 9999;
+  z-index: 10000; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -131,6 +131,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: visible;
+  z-index: 10001;
 }
 
 .lightbox-content {
@@ -141,6 +143,7 @@
   width: 100%;
   height: calc(100vh - 140px);
   padding: 60px 80px 20px;
+  overflow: visible; /* zapewnia widoczność przycisków i miniatur */
 }
 
 .lightbox-image {
@@ -151,6 +154,9 @@
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  pointer-events: none; /* kliknięcia trafiają na przyciski nad obrazem */
+  position: relative;
+  z-index: 10002;
 }
 
 /* Lightbox Controls */
@@ -162,18 +168,23 @@
   border-radius: 50%;
   width: 50px;
   height: 50px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.18s ease;
   backdrop-filter: blur(4px);
+  z-index: 10003; /* zawsze ponad obrazem */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
 }
 
 .lightbox-btn:hover {
   background: var(--gold);
   color: var(--primary-black);
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .lightbox-close {
@@ -196,7 +207,7 @@
 
 .lightbox-prev:hover,
 .lightbox-next:hover {
-  transform: translateY(-50%) scale(1.1);
+  transform: translateY(-50%) scale(1.08);
 }
 
 .lightbox-counter {
@@ -647,11 +658,11 @@
 }
 
 @keyframes slideIn {
-  from { 
+  from {
     opacity: 0;
     transform: scale(0.8);
   }
-  to { 
+  to {
     opacity: 1;
     transform: scale(1);
   }
