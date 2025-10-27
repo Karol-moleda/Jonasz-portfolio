@@ -143,7 +143,7 @@
   width: 100%;
   height: calc(100vh - 140px);
   padding: 60px 80px 20px;
-  overflow: visible; /* zapewnia widoczność przycisków i miniatur */
+  overflow: visible; 
 }
 
 .lightbox-image {
@@ -154,7 +154,7 @@
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  pointer-events: none; /* kliknięcia trafiają na przyciski nad obrazem */
+  pointer-events: none; 
   position: relative;
   z-index: 10002;
 }
@@ -188,9 +188,13 @@
 }
 
 .lightbox-close {
-  top: 20px;
+  /* Make the close button fixed and visible above nav bars
+     (150px from top on desktop). Keep font-size and high z-index. */
+  position: fixed;
+  top: 150px;
   right: 20px;
   font-size: 1.2rem;
+  z-index: 10005; /* Ensure it's above the overlay controls */
 }
 
 .lightbox-prev {
@@ -227,7 +231,7 @@
 /* Thumbnail Strip */
 .lightbox-thumbs {
   position: absolute;
-  bottom: 20px;
+  bottom: 40px; /* Raise position */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -239,6 +243,7 @@
   border-radius: 12px;
   backdrop-filter: blur(8px);
   scrollbar-width: none;
+  z-index: 10004; /* Higher than other elements */
 }
 
 .lightbox-thumbs::-webkit-scrollbar {
@@ -290,8 +295,10 @@
   }
 
   .lightbox-close {
-    top: 10px;
-    right: 10px;
+    /* On tablet/smaller screens, bring it closer to top so it's still visible */
+    position: fixed;
+    top: 90px;
+    right: 12px;
   }
 
   .lightbox-prev {
