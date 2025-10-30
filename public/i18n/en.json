@@ -10,40 +10,39 @@
   },
   "home": {
     "title": "Jonasz Jochemczyk",
-    "subtitle": "Pianist • Composer • Artist",
+    "subtitle": "Pianist • Chamber Musician • Artist",
     "hero": {
-      "title": "Welcome to the World of Music",
-      "description": "Discover the magical world of piano performed by Jonasz Jochemczyk - an outstanding pianist and composer from Olkusz."
+      "title": "Welcome to the world of music",
+      "description": "Discover the magical world of piano through the performances of Jonasz Jochemczyk – an outstanding pianist and musician from Olkusz."
     },
     "biography": {
       "title": "Biography",
-      "short": "Jonasz Jochemczyk is an outstanding pianist and composer whose music combines classical tradition with modern experiments. His interpretations enchant audiences worldwide.",
+      "short": "Jonasz Jochemczyk is a distinguished pianist and composer whose music blends classical tradition with modern experimentation. His interpretations captivate audiences around the world.",
       "readMore": "Read more"
     },
     "achievements": {
       "title": "Achievements",
       "items": [
         "Laureate of international piano competitions",
-        "Performances in prestigious concert halls",
-        "Recordings for leading music labels",
-        "Collaboration with outstanding conductors and orchestras"
+        "Performances in prestigious concert halls"
       ]
     },
     "upcomingConcerts": {
-      "title": "Upcoming Concerts",
+      "title": "Upcoming concerts",
       "viewAll": "View all"
     }
   },
   "biography": {
     "title": "Biography",
-    "fullText": "Jonasz Jochemczyk was born in Olkusz, where he began his musical journey. From an early age, he showed extraordinary piano talent, which he developed under the guidance of outstanding pedagogues.\n\nHis musical education included studies at the best music schools, where he perfected his technical and artistic skills. Today, he is recognized as one of the most outstanding pianists of his generation.\n\nJonasz's repertoire includes both classical masterpieces and contemporary compositions. His interpretations are characterized by deep understanding of music, technical perfection, and extraordinary artistic sensitivity.\n\nAs a composer, Jonasz creates music that combines tradition with modernity, creating a unique style that speaks to contemporary audiences."
+    "artisticJourney": "Artistic journey",
+    "fullText": "Jonasz Jochemczyk was born in Olkusz, where he began his musical journey. From an early age, he showed exceptional piano talent, which he developed under the guidance of outstanding teachers.\n\nHis musical education included studies at leading music academies, where he honed his technical and artistic skills. Today, he is regarded as one of the most prominent pianists of his generation.\n\nJonasz’s repertoire includes both classical masterpieces and contemporary works. His interpretations are marked by a deep understanding of music, technical perfection, and remarkable artistic sensitivity.\n\nAs a composer, Jonasz creates music that combines tradition with modernity, developing a unique style that resonates with contemporary audiences."
   },
   "concerts": {
     "title": "Concerts",
     "upcoming": "Upcoming",
     "archive": "Archive",
     "tickets": "Tickets",
-    "freeEntry": "Free Entry",
+    "freeEntry": "Free entry",
     "moreInfo": "More information",
     "register": "Register",
     "eventPage": "Event page",
@@ -73,19 +72,20 @@
     "title": "Contact",
     "email": "Email",
     "phone": "Phone",
-    "socialMedia": "Social Media",
+    "socialMedia": "Social media",
     "followOn": "Follow on",
-    "sendMessage": "Send message",
-    "name": "Name",
+    "sendMessage": "Send a message",
+    "name": "Full name",
     "message": "Message",
-    "send": "Send"
+    "send": "Send",
+    "infoTitle": "Contact information"
   },
   "footer": {
     "copyright": "© 2024 Jonasz Jochemczyk. All rights reserved.",
     "design": "Design and development"
   },
   "language": {
-    "pl": "Polski",
+    "pl": "Polish",
     "en": "English",
     "it": "Italian"
   },

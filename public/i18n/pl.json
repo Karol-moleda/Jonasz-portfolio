@@ -10,10 +10,10 @@
   },
   "home": {
     "title": "Jonasz Jochemczyk",
-    "subtitle": "Pianista • Artysta",
+    "subtitle": "Pianista • Kameralista • Artysta",
     "hero": {
       "title": "Witaj w świecie muzyki",
-      "description": "Odkryj magiczny świat fortepianu w wykonaniu Jonasza Jochemczyka - wybitnego pianisty i kompozytora z Olkusza."
+      "description": "Odkryj magiczny świat fortepianu w wykonaniu Jonasza Jochemczyka - wybitnego pianisty i muzyka z Olkusza."
     },
     "biography": {
       "title": "Biografia",
@@ -24,8 +24,7 @@
       "title": "Osiągnięcia",
       "items": [
         "Laureat międzynarodowych konkursów pianistycznych",
-        "Występy w prestiżowych salach koncertowych",
-        "Współpraca z wybitnymi dyrygentami i orkiestrami"
+        "Występy w prestiżowych salach koncertowych"
       ]
     },
     "upcomingConcerts": {
@@ -35,6 +34,7 @@
   },
   "biography": {
     "title": "Biografia",
+    "artisticJourney": "Droga artystyczna",
     "fullText": "Jonasz Jochemczyk urodził się w Olkuszu, gdzie rozpoczął swoją muzyczną podróż. Od najmłodszych lat wykazywał niezwykły talent pianistyczny, który rozwijał pod okiem wybitnych pedagogów.\n\nJego edukacja muzyczna obejmowała studia w najlepszych szkołach muzycznych, gdzie doskonalił swoje umiejętności techniczne i artystyczne. Dziś jest uznawany za jednego z najwybitniejszych pianistów swojego pokolenia.\n\nRepertuar Jonasza obejmuje zarówno klasyczne dzieła mistrzów, jak i współczesne kompozycje. Jego interpretacje charakteryzują się głębokim zrozumieniem muzyki, techniczną perfekcją oraz niezwykłą wrażliwością artystyczną.\n\nJako kompozytor, Jonasz tworzy muzykę, która łączy tradycję z nowoczesnością, tworząc unikalny styl, który przemawia do współczesnej publiczności."
   },
   "concerts": {
@@ -77,7 +77,8 @@
     "sendMessage": "Wyślij wiadomość",
     "name": "Imię i nazwisko",
     "message": "Wiadomość",
-    "send": "Wyślij"
+    "send": "Wyślij",
+    "infoTitle": "Informacje kontaktowe"
   },
   "footer": {
     "copyright": "© 2024 Jonasz Jochemczyk. Wszystkie prawa zastrzeżone.",

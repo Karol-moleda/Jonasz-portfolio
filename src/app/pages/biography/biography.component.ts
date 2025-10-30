@@ -62,7 +62,7 @@ export class BiographyComponent implements OnInit {
   private normalizeSections(sections: any[]): any[] {
     if (!sections || !sections.length) return sections || [];
     const othersHaveContent = sections.slice(1).some(s => (s?.content || []).length > 0);
-    if (othersHaveContent) return sections; // nie ingerujemy
+    if (othersHaveContent) return sections; 
 
     const first = sections[0];
     const allSegments = this.extractAllNumberedSegments(first?.content || []);
@@ -104,6 +104,10 @@ export class BiographyComponent implements OnInit {
 
   getLocalizedTimelineDescription(item: any): string {
     return getLocalizedText(item.description, this.translationService.getCurrentLanguage());
+  }
+
+  getArtisticJourneyTitle(): string {
+    return this.translationService.get('biography.artisticJourney');
   }
 
   private extractNumberedSegment(blocks: any[], targetHeading: string): string | null {

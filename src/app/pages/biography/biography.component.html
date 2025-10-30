@@ -54,7 +54,7 @@
 
     <!-- Timeline Section -->
     <div class="timeline-section" *ngIf="bio.timeline?.length">
-      <h2 class="section-title">Droga artystyczna</h2>
+      <h2 class="section-title">{{ getArtisticJourneyTitle() }}</h2>
       <div class="timeline">
         <div class="timeline-item" *ngFor="let item of bio.timeline">
           <div class="timeline-date">{{ item.date }}</div>
