@@ -17,8 +17,10 @@ export class ContactComponent {
   contactForm = {
     name: '',
     email: '',
-    message: ''
+    message: '',
+    honeypot: '' 
   };
+  showModal = false;
 
   sending = false;
   sendSuccess = false;
@@ -44,6 +46,10 @@ export class ContactComponent {
   }
 
   validateForm(): boolean {
+    if (this.contactForm.honeypot && this.contactForm.honeypot.trim() !== '') {
+      this.validationError = 'Spam wykryty.';
+      return false;
+    }
     if (!this.contactForm.name?.trim()) {
       this.validationError = this.getTranslation('contact.validationName') || 'Podaj imię!';
       return false;
@@ -79,8 +85,9 @@ export class ContactComponent {
     this.http.post(this.formspreeEndpoint, payload, { headers: { 'Accept': 'application/json' } }).subscribe({
       next: (res: any) => {
         this.sendSuccess = !!res?.ok || true;
-        this.contactForm = { name: '', email: '', message: '' };
+        this.contactForm = { name: '', email: '', message: '', honeypot: '' };
         this.sending = false;
+        this.showModal = true;
       },
       error: (err) => {
         const fallback = 'Błąd podczas wysyłania wiadomości.';
@@ -89,5 +96,9 @@ export class ContactComponent {
         this.sending = false;
       }
     });
+  }
+
+  closeModal() {
+    this.showModal = false;
   }
 } 

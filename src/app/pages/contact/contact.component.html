@@ -55,6 +55,11 @@
           <h2>{{ getTranslation('contact.sendMessage') }}</h2>
           
           <form>
+            <!-- Honeypot field (anty-spam) -->
+            <div style="display:none">
+              <label for="honeypot">Nie wypełniaj tego pola</label>
+              <input type="text" id="honeypot" name="honeypot" [(ngModel)]="contactForm.honeypot" autocomplete="off">
+            </div>
             <div class="form-group">
               <label for="name">{{ getTranslation('contact.name') }}</label>
               <input 
@@ -89,8 +94,14 @@
               {{ getTranslation('contact.send') }}
             </button>
 
-            <div *ngIf="sendSuccess" class="alert alert-success mt-2">
-              {{ getTranslation('contact.success') || 'Wiadomość wysłana! Dziękuję.' }}
+            <!-- Modal po wysłaniu -->
+            <div *ngIf="showModal" class="modal-backdrop">
+              <div class="modal">
+                <div class="modal-content">
+                  <span class="close" (click)="closeModal()">&times;</span>
+                  <h2>{{ getTranslation('contact.success') || 'Wiadomość wysłana! Dziękuję.' }}</h2>
+                </div>
+              </div>
             </div>
             <div *ngIf="sendError" class="alert alert-danger mt-2">
               {{ sendError }}
