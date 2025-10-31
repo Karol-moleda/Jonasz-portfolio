@@ -1,3 +1,31 @@
+/* Gallery Filters Mobile Dropdown */
+.gallery-filters-mobile {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.gallery-filters-mobile select {
+  background: #111;
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  border-radius: 8px;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: border-color 0.3s;
+}
+
+.gallery-filters-mobile select:focus {
+  border-color: var(--gold);
+}
+
+.gallery-filters-mobile option {
+  background: #111;
+  color: var(--gold);
+}
 .gallery-page {
   padding-top: 2rem;
 }
@@ -14,7 +42,6 @@
   margin-bottom: 1rem;
 }
 
-/* Gallery Filters */
 .gallery-filters {
   display: flex;
   justify-content: center;
@@ -47,12 +74,10 @@
   border-color: var(--gold);
 }
 
-/* Modern Gallery with Custom Lightbox */
 .modern-gallery {
   margin-top: 2rem;
 }
 
-/* Masonry Grid Layout */
 .masonry-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -108,7 +133,6 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Modern Lightbox */
 .lightbox-overlay {
   position: fixed;
   inset: 0;
@@ -159,7 +183,6 @@
   z-index: 10002;
 }
 
-/* Lightbox Controls */
 .lightbox-btn {
   position: absolute;
   background: rgba(0, 0, 0, 0.8);
@@ -177,7 +200,7 @@
   cursor: pointer;
   transition: all 0.18s ease;
   backdrop-filter: blur(4px);
-  z-index: 10003; /* zawsze ponad obrazem */
+  z-index: 10003;
   box-shadow: 0 6px 18px rgba(0,0,0,0.45);
 }
 
@@ -188,13 +211,11 @@
 }
 
 .lightbox-close {
-  /* Make the close button fixed and visible above nav bars
-     (150px from top on desktop). Keep font-size and high z-index. */
   position: fixed;
   top: 150px;
   right: 20px;
   font-size: 1.2rem;
-  z-index: 10005; /* Ensure it's above the overlay controls */
+  z-index: 10005;
 }
 
 .lightbox-prev {
@@ -228,10 +249,9 @@
   border: 1px solid rgba(255, 215, 0, 0.3);
 }
 
-/* Thumbnail Strip */
 .lightbox-thumbs {
   position: absolute;
-  bottom: 40px; /* Raise position */
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -243,7 +263,7 @@
   border-radius: 12px;
   backdrop-filter: blur(8px);
   scrollbar-width: none;
-  z-index: 10004; /* Higher than other elements */
+  z-index: 10004;
 }
 
 .lightbox-thumbs::-webkit-scrollbar {
@@ -277,7 +297,6 @@
   object-fit: cover;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .masonry-grid {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -295,7 +314,6 @@
   }
 
   .lightbox-close {
-    /* On tablet/smaller screens, bring it closer to top so it's still visible */
     position: fixed;
     top: 90px;
     right: 12px;
@@ -352,13 +370,11 @@
   }
 }
 
-/* Custom ng-gallery styling */
 ::ng-deep {
   .g-container {
     background: transparent !important;
   }
 
-  /* Lightbox styling only */
   .g-overlay {
     background: rgba(0, 0, 0, 0.95) !important;
     backdrop-filter: blur(5px) !important;
@@ -422,7 +438,6 @@
   }
 }
 
-/* Responsive adjustments for modern gallery */
 @media (max-width: 768px) {
   .masonry-grid {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -455,7 +470,6 @@
   }
 }
 
-/* No Photos */
 .no-photos {
   display: flex;
   justify-content: center;
@@ -485,7 +499,6 @@
   margin: 0 auto;
 }
 
-/* Image Placeholder */
 .image-placeholder {
   width: 100%;
   height: 100%;
@@ -510,7 +523,6 @@
   color: var(--text-secondary);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .page-title {
     font-size: 2.5rem;
@@ -546,7 +558,6 @@
   }
 }
 
-/* Custom Photo Modal */
 .photo-modal-overlay {
   position: fixed;
   top: 0;
@@ -658,7 +669,6 @@
   right: 20px;
 }
 
-/* Animacje */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -675,7 +685,6 @@
   }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .modal-close,
   .modal-nav {

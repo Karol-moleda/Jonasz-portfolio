@@ -38,12 +38,18 @@ export class GalleryComponent implements OnInit {
     this.galleries().find((g) => g._id === this.activeTab())
   );
 
-  // Modern lightbox state
+  isMobile = window.innerWidth < 768;
+
+  @HostListener('window:resize')
+  onResize() {
+    this.isMobile = window.innerWidth < 768;
+  }
+
+
   isLightboxOpen = signal<boolean>(false);
   currentImageIndex = signal<number>(0);
   currentImages = signal<any[]>([]);
   
-  // Computed for current image
   currentImage = computed(() => {
     const images = this.currentImages();
     const index = this.currentImageIndex();
@@ -64,6 +70,11 @@ export class GalleryComponent implements OnInit {
         this.activeTab.set(data[0]._id);
       }
     });
+  }
+
+    onCityChange(event: Event): void {
+    const select = event.target as HTMLSelectElement;
+    this.setActiveTab(select.value);
   }
 
   setActiveTab(galleryId: string): void {

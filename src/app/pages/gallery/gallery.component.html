@@ -5,7 +5,7 @@
       <h1 class="page-title">{{ getTranslation('gallery.title') }}</h1>
     </div>
 
-    <div class="gallery-filters" *ngIf="galleries().length > 0">
+    <div class="gallery-filters" *ngIf="galleries().length > 0 && !isMobile">
       <button
         *ngFor="let gallery of galleries()"
         class="filter-btn"
@@ -16,7 +16,14 @@
       </button>
     </div>
 
-    <!-- Modern Masonry Gallery -->
+    <div class="gallery-filters-mobile" *ngIf="galleries().length > 0 && isMobile">
+  <select (change)="onCityChange($event)">
+        <option *ngFor="let gallery of galleries()" [value]="gallery._id" [selected]="activeTab() === gallery._id">
+          {{ getLocalizedTitle(gallery) }}
+        </option>
+      </select>
+    </div>
+
     <div *ngIf="activeGallery() as gallery" class="modern-gallery">
       <div class="masonry-grid">
         <div 
@@ -45,7 +52,6 @@
     </div>
   </div>
 
-  <!-- Modern Lightbox Modal -->
   <div 
     *ngIf="isLightboxOpen()"
     class="lightbox-overlay"
@@ -54,17 +60,14 @@
   >
     <div class="lightbox-container" (click)="$event.stopPropagation()">
       
-      <!-- Close Button -->
       <button class="lightbox-btn lightbox-close" (click)="closeLightbox()">
         <i class="fas fa-times"></i>
       </button>
 
-      <!-- Image Counter -->
       <div class="lightbox-counter">
         {{ currentImageIndex() + 1 }} / {{ currentImages().length }}
       </div>
 
-      <!-- Navigation Buttons -->
       <button 
         *ngIf="currentImageIndex() > 0"
         class="lightbox-btn lightbox-prev"
@@ -81,7 +84,6 @@
         <i class="fas fa-chevron-right"></i>
       </button>
 
-      <!-- Main Image -->
       <div class="lightbox-content">
         <img 
           *ngIf="currentImage() as image"
@@ -91,8 +93,7 @@
           [@zoomIn]
         />
       </div>
-
-      <!-- Thumbnail Strip -->
+      
       <div class="lightbox-thumbs" *ngIf="currentImages().length > 1">
         <div 
           *ngFor="let photo of currentImages(); let i = index"
