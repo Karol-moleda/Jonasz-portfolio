@@ -66,7 +66,7 @@
             </div>
 
             <div class="form-group">
-              <label for="email">{{ getTranslation('contact.email') }}</label>
+              <label for="email">Twój adres e-mail</label>
               <input 
                 type="email" 
                 id="email" 
@@ -85,9 +85,19 @@
                 class="form-input"></textarea>
             </div>
 
-            <a [href]="getMailtoLink()" class="btn btn-primary">
+            <button type="button" class="btn btn-primary" (click)="sendForm()" [disabled]="sending">
               {{ getTranslation('contact.send') }}
-            </a>
+            </button>
+
+            <div *ngIf="sendSuccess" class="alert alert-success mt-2">
+              {{ getTranslation('contact.success') || 'Wiadomość wysłana! Dziękuję.' }}
+            </div>
+            <div *ngIf="sendError" class="alert alert-danger mt-2">
+              {{ sendError }}
+            </div>
+            <div *ngIf="validationError" class="alert alert-warning mt-2">
+              {{ validationError }}
+            </div>
           </form>
         </div>
       </div>
