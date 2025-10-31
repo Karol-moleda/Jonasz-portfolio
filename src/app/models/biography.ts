@@ -13,8 +13,10 @@ export interface Biography {
     content: LocalizedContent | any[];
   }[];
   timeline: {
-    date: string;
-    title: LocalizedText | string;
-    description: LocalizedText | string;
+    year: string;
+    event: LocalizedText | string;
+    location: LocalizedText | string;
+    achievement: LocalizedText | string;
+    details?: LocalizedText | string;
   }[];
 }

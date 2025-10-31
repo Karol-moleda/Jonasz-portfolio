@@ -52,15 +52,25 @@
       </div>
     </div>
 
-    <!-- Timeline Section -->
+    <!-- Timeline Section - Droga artystyczna -->
     <div class="timeline-section" *ngIf="bio.timeline?.length">
       <h2 class="section-title">{{ getArtisticJourneyTitle() }}</h2>
       <div class="timeline">
         <div class="timeline-item" *ngFor="let item of bio.timeline">
-          <div class="timeline-date">{{ item.date }}</div>
+          <div class="timeline-date">{{ item.year }}</div>
           <div class="timeline-content">
-            <h3>{{  getLocalizedTimelineTitle(item)  }}</h3>
-            <p>{{ getLocalizedTimelineDescription(item) }}</p>
+            <h3 *ngIf="getLocalizedTimelineEvent(item)">{{ getLocalizedTimelineEvent(item) }}</h3>
+            <p class="timeline-description">
+              <span *ngIf="getLocalizedTimelineLocation(item)" class="location">
+                {{ getLocalizedTimelineLocation(item) }}
+              </span>
+              <span *ngIf="getLocalizedTimelineAchievement(item)" class="achievement-highlight">
+                {{ getLocalizedTimelineAchievement(item) }}
+              </span>
+            </p>
+            <p *ngIf="getLocalizedTimelineDetails(item)" class="timeline-details">
+              {{ getLocalizedTimelineDetails(item) }}
+            </p>
           </div>
         </div>
       </div>

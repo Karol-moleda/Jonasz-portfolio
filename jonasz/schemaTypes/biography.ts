@@ -64,21 +64,26 @@ export const biography = defineType({
     }),
     defineField({
       name: 'timeline',
-      title: 'Timeline',
+      title: 'Timeline (Oś czasu)',
       type: 'array',
+      description: '⚠️ WAŻNE: Każde osiągnięcie/wydarzenie dodaj jako OSOBNY wpis! Jeśli w tym samym roku było kilka nagród - dodaj kilka wpisów z tym samym rokiem. Każdy wpis = osobna linia na stronie.',
       of: [
         {
           type: 'object',
+          title: 'Wydarzenie',
           fields: [
             { 
-              name: 'date', 
-              title: 'Data', 
-              type: 'string' 
+              name: 'year', 
+              title: 'Rok', 
+              type: 'string',
+              description: 'Np. "2020", "2019-2021"',
+              validation: (Rule: any) => Rule.required()
             },
             { 
-              name: 'title', 
-              title: 'Tytuł', 
+              name: 'event', 
+              title: 'Wydarzenie', 
               type: 'object',
+              description: 'Co się wydarzyło',
               fields: [
                 { name: 'pl', title: 'Polski', type: 'string' },
                 { name: 'en', title: 'English', type: 'string' },
@@ -86,16 +91,54 @@ export const biography = defineType({
               ]
             },
             { 
-              name: 'description', 
-              title: 'Opis', 
+              name: 'location', 
+              title: 'Miejsce', 
               type: 'object',
+              description: 'Gdzie się odbyło',
+              fields: [
+                { name: 'pl', title: 'Polski', type: 'string' },
+                { name: 'en', title: 'English', type: 'string' },
+                { name: 'it', title: 'Italiano', type: 'string' }
+              ]
+            },
+            { 
+              name: 'achievement', 
+              title: 'Osiągnięcie/Nagroda', 
+              type: 'object',
+              description: 'Np. "I miejsce", "Laureat", "Wyróżnienie" - będzie wyróżnione',
+              fields: [
+                { name: 'pl', title: 'Polski', type: 'string' },
+                { name: 'en', title: 'English', type: 'string' },
+                { name: 'it', title: 'Italiano', type: 'string' }
+              ]
+            },
+            { 
+              name: 'details', 
+              title: 'Dodatkowe szczegóły (opcjonalne)', 
+              type: 'object',
+              description: 'Dodatkowe informacje, jeśli potrzebne',
               fields: [
                 { name: 'pl', title: 'Polski', type: 'text' },
                 { name: 'en', title: 'English', type: 'text' },
                 { name: 'it', title: 'Italiano', type: 'text' }
               ]
             }
-          ]
+          ],
+          preview: {
+            select: {
+              year: 'year',
+              event: 'event.pl',
+              achievement: 'achievement.pl',
+              location: 'location.pl'
+            },
+            prepare({ year, event, achievement, location }: any) {
+              return {
+                title: `${year} → ${event || 'Bez tytułu'}`,
+                subtitle: `🏆 ${achievement || 'Brak osiągnięcia'} ${location ? '📍 ' + location : ''}`,
+                media: undefined
+              }
+            }
+          }
         }
       ]
     })

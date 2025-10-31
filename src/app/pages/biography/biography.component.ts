@@ -98,12 +98,20 @@ export class BiographyComponent implements OnInit {
     return getLocalizedContent(section.content, this.translationService.getCurrentLanguage());
   }
 
-  getLocalizedTimelineTitle(item: any): string {
-    return getLocalizedText(item.title, this.translationService.getCurrentLanguage());
+  getLocalizedTimelineEvent(item: any): string {
+    return getLocalizedText(item.event, this.translationService.getCurrentLanguage());
   }
 
-  getLocalizedTimelineDescription(item: any): string {
-    return getLocalizedText(item.description, this.translationService.getCurrentLanguage());
+  getLocalizedTimelineLocation(item: any): string {
+    return getLocalizedText(item.location, this.translationService.getCurrentLanguage());
+  }
+
+  getLocalizedTimelineAchievement(item: any): string {
+    return getLocalizedText(item.achievement, this.translationService.getCurrentLanguage());
+  }
+
+  getLocalizedTimelineDetails(item: any): string {
+    return getLocalizedText(item.details, this.translationService.getCurrentLanguage());
   }
 
   getArtisticJourneyTitle(): string {

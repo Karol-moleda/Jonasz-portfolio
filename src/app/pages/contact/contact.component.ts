@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './contact.component.scss'
 })
 export class ContactComponent {
-  private formspreeEndpoint = 'https://formspree.io/f/xanlppez';
+  private formspreeEndpoint = 'https://formspree.io/f/xwpwryyo';
 
   contactForm = {
     name: '',

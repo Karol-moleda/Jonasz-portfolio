@@ -53,9 +53,11 @@ export class SanityService {
       content{pl, en, it}
     },
     timeline[]{
-      date,
-      title{pl, en, it},
-      description{pl, en, it}
+      year,
+      event{pl, en, it},
+      location{pl, en, it},
+      achievement{pl, en, it},
+      details{pl, en, it}
     }
   }
     `);
