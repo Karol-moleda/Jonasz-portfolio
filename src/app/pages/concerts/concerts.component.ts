@@ -80,7 +80,15 @@ private loadConcerts(): void {
 
   formatDate(dateString: string): string {
     const date = new Date(dateString);
-    return date.toLocaleDateString('pl-PL', {
+    const lang = this.translationService.getCurrentLanguage();
+    const localeMap: Record<string, string> = {
+      'pl': 'pl-PL',
+      'en': 'en-US',
+      'it': 'it-IT'
+    };
+    const locale = localeMap[lang] || 'pl-PL';
+
+    return date.toLocaleDateString(locale, {
       day: 'numeric',
       month: 'long',
       year: 'numeric'
