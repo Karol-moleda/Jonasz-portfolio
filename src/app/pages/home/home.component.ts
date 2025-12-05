@@ -27,6 +27,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.loadUpcomingConcerts();
     this.loadAchievements();
+    // Re-load achievements whenever translations are (re)loaded
+    this.translationService.translations$.subscribe(() => {
+      this.loadAchievements();
+    });
   }
 
   private loadUpcomingConcerts(): void {

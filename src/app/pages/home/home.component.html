@@ -49,27 +49,11 @@
   <div class="container">
     <div class="grid grid-2">
       <div class="achievements-content">
-        <h2 class="section-title text-gold" style="font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 1px;">Osiągnięcia</h2>
+        <h2 class="section-title text-gold" style="font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 1px;">{{ getTranslation('home.achievements.title') }}</h2>
         <ul class="achievements-list" style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 1rem; font-size: 1.15rem; display: flex; align-items: center;">
-            <i class="fas fa-trophy text-gold" style="margin-right: 0.75rem;"></i>
-            <span>Laureat międzynarodowych konkursów pianistycznych</span>
-          </li>
-          <li style="margin-bottom: 1rem; font-size: 1.15rem; display: flex; align-items: center;">
-            <i class="fas fa-music text-gold" style="margin-right: 0.75rem;"></i>
-            <span>Występy w prestiżowych salach koncertowych</span>
-          </li>
-          <li style="margin-bottom: 1rem; font-size: 1.15rem; display: flex; align-items: center;">
-            <i class="fas fa-users text-gold" style="margin-right: 0.75rem;"></i>
-            <span>Współpraca z wybitnymi dyrygentami i orkiestrami</span>
-          </li>
-          <li style="margin-bottom: 1rem; font-size: 1.15rem; display: flex; align-items: center;">
-            <i class="fas fa-globe-europe text-gold" style="margin-right: 0.75rem;"></i>
-            <span>Recitale w Europie, Azji i Ameryce Północnej</span>
-          </li>
-          <li style="margin-bottom: 1rem; font-size: 1.15rem; display: flex; align-items: center;">
+          <li *ngFor="let item of achievements()" style="margin-bottom: 1rem; font-size: 1.15rem; display: flex; align-items: center;">
             <i class="fas fa-award text-gold" style="margin-right: 0.75rem;"></i>
-            <span>Stypendia artystyczne i nagrody specjalne</span>
+            <span>{{ item }}</span>
           </li>
         </ul>
       </div>

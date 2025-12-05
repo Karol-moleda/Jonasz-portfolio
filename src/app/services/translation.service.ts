@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { of } from 'rxjs';
+import { of, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Language } from '../models/localized.types';
 
@@ -10,6 +10,8 @@ import { Language } from '../models/localized.types';
 export class TranslationService {
   private currentLanguage = signal<Language>('pl');
   private translations = signal<any>({});
+  // Observable to notify components when translations change
+  public translations$ = new BehaviorSubject<any>({});
 
   constructor(private http: HttpClient) {
     this.loadTranslations(this.currentLanguage());
@@ -45,7 +47,9 @@ export class TranslationService {
         })
       )
       .subscribe((translations: any) => {
-        this.translations.set(translations || {});
+        const t = translations || {};
+        this.translations.set(t);
+        this.translations$.next(t);
       });
   }
 

@@ -17,14 +17,17 @@
     },
     "biography": {
       "title": "Biografia",
-      "short": "Jonasz Jochemczyk è un pianista e compositore di grande talento, la cui musica unisce la tradizione classica con la sperimentazione moderna. Le sue interpretazioni affascinano il pubblico in tutto il mondo.",
+      "short": "Jonasz Jochemczyk è nato nel 2001 a Olkusz. Nel 2008 ha iniziato lo studio del pianoforte presso la Scuola di Musica di primo grado intitolata a W. Kilar a Olkusz sotto la guida della mgr Ewa Łydka. Dopo sei anni ha completato la scuola di primo grado e ha proseguito gli studi presso la Scuola di Musica statale di secondo grado intitolata a F. Chopin a Cracovia, sotto la supervisione del Prof. Gajusz Kęska. Nell'ottobre 2020 ha iniziato gli studi all'Accademia di Musica di Cracovia nella classe di pianoforte del Prof. Gajusz Kęska. Nell'ottobre 2025 ha conseguito il master con lode.",
       "readMore": "Leggi di più"
     },
     "achievements": {
       "title": "Riconoscimenti",
       "items": [
         "Vincitore di concorsi pianistici internazionali",
-        "Esibizioni in prestigiose sale da concerto"
+        "Esibizioni in prestigiose sale da concerto",
+        "Collaborazioni con direttori e orchestre di spicco",
+        "Recital in Europa, Asia e Nord America",
+        "Borse di studio artistiche e premi speciali"
       ]
     },
     "upcomingConcerts": {
