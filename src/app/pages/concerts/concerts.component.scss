@@ -50,8 +50,10 @@
 .archive-year-tabs {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   margin-bottom: 3rem;
   gap: 0.5rem;
+  padding: 0 1rem;
 }
 
 .year-tab-btn {
@@ -409,23 +411,71 @@
 }
 
 /* Responsive */
+@media (max-width: 992px) {
+  .concerts-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .concerts-page {
+    padding-top: 1rem;
+  }
+
+  .page-header {
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+  }
+
   .page-title {
     font-size: 2.5rem;
   }
 
   .tabs {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0 1rem;
   }
 
   .tab-btn {
-    width: 100%;
-    max-width: 300px;
+    flex: 1;
+    min-width: auto;
+    max-width: 200px;
+    padding: 0.875rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .archive-year-tabs {
+    gap: 0.4rem;
+    margin-bottom: 2rem;
+  }
+
+  .year-tab-btn {
+    padding: 0.65rem 1rem;
+    font-size: 0.85rem;
+    min-width: 70px;
   }
 
   .concerts-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .concert-card {
+    border-radius: 10px;
+  }
+
+  .concert-image {
+    height: 220px;
+  }
+
+  .ticket-type-badge {
+    top: 10px;
+    right: 10px;
+    padding: 5px 9px;
+    font-size: 0.75rem;
   }
 
   .concert-details {
@@ -435,55 +485,200 @@
   .concert-title {
     font-size: 1.3rem;
   }
+
+  .info-item {
+    gap: 0.7rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .concert-program {
+    padding: 0.9rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .action-buttons {
+    gap: 0.65rem;
+  }
+
+  .btn {
+    padding: 0.65rem 1.1rem;
+    font-size: 0.85rem;
+  }
 }
 
 @media (max-width: 480px) {
+  .concerts-page {
+    padding-top: 0.5rem;
+  }
+
+  .page-header {
+    margin-bottom: 1.5rem;
+  }
+
   .page-title {
     font-size: 2rem;
   }
 
-  .concert-details {
+  .tabs {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .tab-btn {
+    width: 100%;
+    max-width: none;
     padding: 1rem;
   }
 
+  .archive-year-tabs {
+    gap: 0.35rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .year-tab-btn {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+    min-width: 65px;
+  }
+
+  .concerts-grid {
+    gap: 1.25rem;
+  }
+
+  .concert-image {
+    height: 200px;
+  }
+
+  .ticket-type-badge {
+    top: 8px;
+    right: 8px;
+    padding: 4px 8px;
+    font-size: 0.7rem;
+    
+    i {
+      font-size: 0.7rem;
+    }
+  }
+
+  .concert-details {
+    padding: 1.25rem;
+  }
+
   .concert-title {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .concert-info {
+    margin-bottom: 1.25rem;
   }
 
   .info-item {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
+    gap: 0.6rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .info-item i {
+    font-size: 0.875rem;
   }
 
   .concert-program {
-    padding: 0.8rem;
+    padding: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .concert-program h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
   }
 
   .concert-program p {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .concert-actions {
+    gap: 1.25rem;
+  }
+
+  .concert-price {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    
+    .price-label {
+      font-size: 0.9rem;
+    }
+
+    .price-value {
+      font-size: 1rem;
+    }
   }
 
   .action-buttons {
     flex-direction: column;
     align-items: stretch;
+    gap: 0.6rem;
     
     .btn {
       text-align: center;
       justify-content: center;
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
     }
   }
 
   .free-entry-badge {
     text-align: center;
     justify-content: center;
+    width: 100%;
+    padding: 0.7rem 1rem;
+    font-size: 0.875rem;
   }
 
-  .concert-price {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
-    
-    .price-value {
-      font-size: 1rem;
-    }
+  .concert-images h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .no-concerts {
+    min-height: 300px;
+    padding: 1rem;
+  }
+
+  .no-concerts-content i {
+    font-size: 3rem;
+  }
+
+  .no-concerts-content h3 {
+    font-size: 1.25rem;
+  }
+
+  .no-concerts-content p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .page-title {
+    font-size: 1.75rem;
+  }
+
+  .year-tab-btn {
+    padding: 0.55rem 0.7rem;
+    font-size: 0.75rem;
+    min-width: 60px;
+  }
+
+  .concert-title {
+    font-size: 1.1rem;
+  }
+
+  .info-item {
+    font-size: 0.825rem;
   }
 } 

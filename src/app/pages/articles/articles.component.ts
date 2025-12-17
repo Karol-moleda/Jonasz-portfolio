@@ -46,7 +46,9 @@ export class ArticlesComponent implements OnInit {
 
   formatDate(dateString: string): string {
     const date = new Date(dateString);
-    return date.toLocaleDateString('pl-PL', {
+    const currentLang = this.translationService.getCurrentLanguage();
+    const locale = currentLang === 'pl' ? 'pl-PL' : currentLang === 'en' ? 'en-US' : 'it-IT';
+    return date.toLocaleDateString(locale, {
       day: 'numeric',
       month: 'long',
       year: 'numeric'

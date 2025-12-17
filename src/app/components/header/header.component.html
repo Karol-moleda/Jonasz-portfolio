@@ -15,16 +15,29 @@
     </nav>
 
     <!-- Language Switcher -->
-    <div class="language-switcher">
-      <button class="lang-btn" 
-              [class.active]="translationService.getCurrentLanguage() === 'pl'" 
-              (click)="switchLanguage('pl')">PL</button>
-      <button class="lang-btn" 
-              [class.active]="translationService.getCurrentLanguage() === 'en'" 
-              (click)="switchLanguage('en')">EN</button>
-      <button class="lang-btn" 
-              [class.active]="translationService.getCurrentLanguage() === 'it'" 
-              (click)="switchLanguage('it')">IT</button>
+    <div class="language-switcher" role="group" aria-label="Language switcher">
+      <div class="lang-segmented">
+        <button
+          type="button"
+          class="lang-btn"
+          [class.active]="translationService.getCurrentLanguage() === 'pl'"
+          [attr.aria-pressed]="translationService.getCurrentLanguage() === 'pl'"
+          (click)="switchLanguage('pl')">PL</button>
+
+        <button
+          type="button"
+          class="lang-btn"
+          [class.active]="translationService.getCurrentLanguage() === 'en'"
+          [attr.aria-pressed]="translationService.getCurrentLanguage() === 'en'"
+          (click)="switchLanguage('en')">EN</button>
+
+        <button
+          type="button"
+          class="lang-btn"
+          [class.active]="translationService.getCurrentLanguage() === 'it'"
+          [attr.aria-pressed]="translationService.getCurrentLanguage() === 'it'"
+          (click)="switchLanguage('it')">IT</button>
+      </div>
     </div>
 
     <!-- Mobile Menu Button -->
@@ -51,6 +64,36 @@
         </a>
       </li>
     </ul>
+
+    <div class="mobile-language-switcher">
+      <div class="lang-divider" aria-hidden="true"></div>
+
+      <div class="lang-segmented" role="group" aria-label="Language switcher">
+        <button
+          type="button"
+          class="lang-segment"
+          [class.active]="translationService.getCurrentLanguage() === 'pl'"
+          (click)="switchLanguage('pl')"
+          [attr.aria-pressed]="translationService.getCurrentLanguage() === 'pl'"
+          aria-label="Polski">PL</button>
+
+        <button
+          type="button"
+          class="lang-segment"
+          [class.active]="translationService.getCurrentLanguage() === 'en'"
+          (click)="switchLanguage('en')"
+          [attr.aria-pressed]="translationService.getCurrentLanguage() === 'en'"
+          aria-label="English">EN</button>
+
+        <button
+          type="button"
+          class="lang-segment"
+          [class.active]="translationService.getCurrentLanguage() === 'it'"
+          (click)="switchLanguage('it')"
+          [attr.aria-pressed]="translationService.getCurrentLanguage() === 'it'"
+          aria-label="Italiano">IT</button>
+      </div>
+    </div>
   </nav>
 
   <!-- Mobile Menu Overlay -->

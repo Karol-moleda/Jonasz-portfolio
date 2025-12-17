@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Concert } from '../../models/concert';
@@ -15,6 +15,7 @@ import { getLocalizedText } from '../../utils/translation.utils';
   styleUrls: ['./concerts.component.scss']
 })
 export class ConcertsComponent implements OnInit {
+  @Input() compact = false; // when true: hide header/tabs and don't load poster images
   activeTab = signal<'upcoming' | 'archive'>('upcoming');
   activeArchiveYear = signal<string>('all'); // Changed to string to support dynamic years
   upcomingConcerts = signal<Concert[]>([]);

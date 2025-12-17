@@ -67,44 +67,5 @@
 </section>
 
 <!-- Upcoming Concerts Section -->
-<section class="section concerts-section">
-  <div class="container">
-    <div class="concerts-header">
-      <h2 class="section-title">{{ getTranslation('home.upcomingConcerts.title') }}</h2>
-      <button class="btn btn-outline" (click)="navigateToConcerts()">
-        {{ getTranslation('home.upcomingConcerts.viewAll') }}
-      </button>
-    </div>
-    
-    <div class="concerts-grid" *ngIf="upcomingConcerts().length > 0; else noConcerts">
-      <div class="concert-card card" *ngFor="let concert of upcomingConcerts()">
-        <div class="concert-image">
-          <div class="image-placeholder">
-            <i class="fas fa-calendar-alt"></i>
-            <span>{{ getLocalizedConcertTitle(concert) }}</span>
-          </div>
-        </div>
-        <div class="concert-info">
-          <h3 class="concert-title">{{ getLocalizedConcertTitle(concert) }}</h3>
-          <p class="concert-date">{{ formatDate(concert.date) }}</p>
-          <p class="concert-location">{{ getLocalizedConcertLocation(concert) }}, {{ getLocalizedConcertVenue(concert) }}</p>
-          <p class="concert-program" *ngIf="getLocalizedConcertProgram(concert)">{{ getLocalizedConcertProgram(concert) }}</p>
-          <div class="concert-actions">
-            <a [href]="concert.ticketLink" 
-               target="_blank" 
-               class="btn btn-primary"
-               *ngIf="concert.ticketLink">
-              {{ getTranslation('concerts.tickets') }}
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <ng-template #noConcerts>
-      <div class="no-concerts">
-        <p>{{ getTranslation('concerts.noConcerts') }}</p>
-      </div>
-    </ng-template>
-  </div>
-</section> 
+<!-- Upcoming Concerts Section: use shared concerts component in compact mode -->
+<app-concerts></app-concerts>

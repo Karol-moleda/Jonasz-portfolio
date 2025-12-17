@@ -1,47 +1,49 @@
 <section class="concerts-page">
   <div class="container">
-    <!-- Page Header -->
-    <div class="page-header">
-      <h1 class="page-title">{{ getTranslation('concerts.title') }}</h1>
-    </div>
-    <!-- Tabs -->
-    <div class="tabs">
-      <button 
-        class="tab-btn" 
-        [class.active]="activeTab() === 'upcoming'"
-        (click)="setActiveTab('upcoming')">
-        {{ getTranslation('concerts.upcoming') }}
-      </button>
-      <button 
-        class="tab-btn" 
-        [class.active]="activeTab() === 'archive'"
-        (click)="setActiveTab('archive')">
-        {{ getTranslation('concerts.archive') }}
-      </button>
-    </div>
+    <!-- Page Header (hidden in compact mode) -->
+    <div *ngIf="!compact">
+      <div class="page-header">
+        <h1 class="page-title">{{ getTranslation('concerts.title') }}</h1>
+      </div>
+      <!-- Tabs -->
+      <div class="tabs">
+        <button 
+          class="tab-btn" 
+          [class.active]="activeTab() === 'upcoming'"
+          (click)="setActiveTab('upcoming')">
+          {{ getTranslation('concerts.upcoming') }}
+        </button>
+        <button 
+          class="tab-btn" 
+          [class.active]="activeTab() === 'archive'"
+          (click)="setActiveTab('archive')">
+          {{ getTranslation('concerts.archive') }}
+        </button>
+      </div>
 
-    <!-- Archive Year Tabs (shown only when archive is active) -->
-    <div class="archive-year-tabs" *ngIf="activeTab() === 'archive' && availableYears().length > 1">
-      <button 
-        class="year-tab-btn" 
-        [class.active]="activeArchiveYear() === 'all'"
-        (click)="setActiveArchiveYear('all')">
-        Wszystkie
-      </button>
-      <button 
-        *ngFor="let year of availableYears()"
-        class="year-tab-btn" 
-        [class.active]="activeArchiveYear() === year.toString()"
-        (click)="setActiveArchiveYear(year.toString())">
-        {{ year }}
-      </button>
+      <!-- Archive Year Tabs (shown only when archive is active) -->
+      <div class="archive-year-tabs" *ngIf="activeTab() === 'archive' && availableYears().length > 1">
+        <button 
+          class="year-tab-btn" 
+          [class.active]="activeArchiveYear() === 'all'"
+          (click)="setActiveArchiveYear('all')">
+          Wszystkie
+        </button>
+        <button 
+          *ngFor="let year of availableYears()"
+          class="year-tab-btn" 
+          [class.active]="activeArchiveYear() === year.toString()"
+          (click)="setActiveArchiveYear(year.toString())">
+          {{ year }}
+        </button>
+      </div>
     </div>
 
     <div class="concerts-container">
       <div class="concerts-grid" *ngIf="getConcerts().length > 0; else noConcerts">
         <div class="concert-card" *ngFor="let concert of getConcerts()">
           <div class="concert-image">
-            <ng-container *ngIf="concert.poster?.asset?.url as posterUrl; else placeholder">
+            <ng-container *ngIf="!compact && concert.poster?.asset?.url as posterUrl; else placeholder">
               <img [src]="posterUrl" [alt]="concert.poster?.alt || getLocalizedTitle(concert)" />
             </ng-container>
             <div class="ticket-type-badge" *ngIf="getTicketingType(concert) === 'free' && activeTab() === 'upcoming'">

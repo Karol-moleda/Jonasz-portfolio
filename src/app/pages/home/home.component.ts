@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { TranslationService } from '../../services/translation.service';
+import { ConcertsComponent } from '../concerts/concerts.component';
 import { Concert } from '../../models/concert';
 import { SanityService } from '../../services/sanity.service';
 import { getLocalizedText } from '../../utils/translation.utils';
@@ -9,7 +10,7 @@ import { getLocalizedText } from '../../utils/translation.utils';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ConcertsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -65,7 +66,9 @@ export class HomeComponent implements OnInit {
 
   formatDate(dateString: string): string {
     const date = new Date(dateString);
-    return date.toLocaleDateString('pl-PL', {
+    const currentLang = this.translationService.getCurrentLanguage();
+    const locale = currentLang === 'pl' ? 'pl-PL' : currentLang === 'en' ? 'en-US' : 'it-IT';
+    return date.toLocaleDateString(locale, {
       day: 'numeric',
       month: 'long',
       year: 'numeric'
