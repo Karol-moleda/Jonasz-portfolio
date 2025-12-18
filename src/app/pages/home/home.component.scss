@@ -5,8 +5,14 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-  /* Background image is applied inline in template to avoid asset path issues on GitHub Pages */
+  background: url('/img/jonasz.jpg') center center / cover no-repeat;
   background-color: var(--primary-black);
+  /* iOS fix: disable background-attachment: fixed */
+  @supports (-webkit-touch-callout: none) {
+    background-attachment: scroll;
+  }
+  /* fallback for other browsers */
+  background-attachment: fixed;
 }
 
 .hero::before {
